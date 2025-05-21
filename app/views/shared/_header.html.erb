@@ -1,0 +1,38 @@
+<header class="bg-green-100 shadow-md fixed top-0 left-0 w-full z-50">
+  <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+    <div class="text-center sm:text-left">
+      <h1 class="text-2xl sm:text-3xl font-extrabold text-green-700">
+        それ、ホンモノですか？
+      </h1>
+      <p class="text-sm sm:text-base text-green-600 font-medium tracking-wide">
+        - フィッシング詐欺対策サイト -
+      </p>
+    </div>
+
+    <!-- ハンバーガーメニュー（ログイン時のみ） -->
+    <% if logged_in? %>
+      <div class="relative">
+        <!-- ボタン -->
+        <button id="menu-button" class="text-green-700 focus:outline-none" onclick="toggleMenu()">
+          <!-- ハンバーガーアイコン -->
+          <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="2"
+            viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+
+        <!-- メニュー -->
+        <div id="dropdown-menu" class="hidden absolute right-0 mt-2 w-48 bg-white border border-green-200 rounded-lg shadow-lg z-50">
+          <ul class="py-2">
+            <li><%= link_to "マイページ", "#", class: "block px-4 py-2 text-green-800 hover:bg-green-100" %></li>
+            <li><%= link_to "クイズ", "#", class: "block px-4 py-2 text-green-800 hover:bg-green-100" %></li>
+            <li><%= link_to "辞典", "#", class: "block px-4 py-2 text-green-800 hover:bg-green-100" %></li>
+            <li><%= link_to "模擬メール", "#", class: "block px-4 py-2 text-green-800 hover:bg-green-100" %></li>
+            <li><%= link_to "ログアウト", "#", method: :delete, class: "block px-4 py-2 text-red-600 hover:bg-red-50" %></li>
+          </ul>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</header>

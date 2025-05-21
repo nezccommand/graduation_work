@@ -2,16 +2,33 @@
   "name": "app",
   "private": true,
   "devDependencies": {
-    "esbuild": "^0.25.4"
+    "esbuild": "^0.25.4",
+    "tailwindcss": "^4.1.7"
   },
   "scripts": {
     "build": "esbuild app/javascript/*.* --bundle --sourcemap --format=esm --outdir=app/assets/builds --public-path=/assets",
-    "build:css": "npx @tailwindcss/cli -i ./app/assets/stylesheets/application.tailwind.css -o ./app/assets/builds/application.css --minify"
+    "build:css": "tailwindcss -i ./app/assets/stylesheets/application.tailwind.css -o ./app/assets/builds/application.css --minify"
   },
   "dependencies": {
     "@hotwired/stimulus": "^3.2.2",
-    "@hotwired/turbo-rails": "^8.0.13",
-    "@tailwindcss/cli": "^4.1.5",
-    "tailwindcss": "^4.1.5"
-  }
+    "@hotwired/turbo-rails": "^8.0.13"
+  },
+  "description": "フィッシング詐欺への理解を深めるための教育型ウェブサービスです。   主にクイズやシミュレーション体験を通じて、詐欺メールを見抜く力を楽しく身につけることができます。   利用していただけた方に、以前よりも少しだけ、怪しいメールを見抜く注意力を身につけて帰っていただけたらと考えています。",
+  "version": "1.0.0",
+  "main": "postcss.config.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nezccommand/graduation_work.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nezccommand/graduation_work/issues"
+  },
+  "homepage": "https://github.com/nezccommand/graduation_work#readme"
 }

@@ -4,10 +4,15 @@
   <h3 class="text-xl font-semibold text-green-800 mb-4"><%= @quiz.question %></h3>
 
   <p class="mb-6 text-gray-700">
-    <span class="font-semibold text-gray-900">解説：</span><br>
+    <span class="font-semibold text-gray-900">解説：</span>
     <%= simple_format(@quiz.explanation) %>
   </p>
-
+  <br>
+  <p class="mb-3 text-gray-700">
+    <span class="font-semibold text-gray-900">ジャンル：</span>
+    <%= simple_format(@quiz.genre) %>
+  </p>
+  <br>
   <h4 class="text-lg font-bold mb-3 text-green-700">選択肢</h4>
   <ul class="space-y-2">
     <% @quiz.choices.each do |choice| %>

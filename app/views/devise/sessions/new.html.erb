@@ -20,7 +20,7 @@
                   focus:ring-2 focus:ring-green-200 focus:border-green-400 focus:outline-none transition duration-150 ease-in-out" %>
 
         <%= f.password_field :password,
-          placeholder: "パスワード(8文字以上)",
+          placeholder: "パスワード(6文字以上)",
           autocomplete: "current-password",
           class: "mt-4 block w-full bg-white h-12 px-4 py-2.5 rounded-md border border-gray-300 shadow-sm
                   focus:ring-2 focus:ring-green-200 focus:border-green-400 focus:outline-none transition duration-150 ease-in-out" %>
@@ -32,12 +32,12 @@
           </div>
         <% end %>
 
-        <div class="active:scale-95 mt-6 flex justify-center">
-          <%= f.submit t("devise.sessions.new.submit", default: "ログイン"), class: "inline-flex items-center px-6 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500" %>
+        <div class="active:scale-95 mt-8 flex justify-center">
+          <%= f.submit t("devise.sessions.new.submit", default: "ログイン"), class: "inline-flex items-center px-6 py-2 border border-transparent text-m font-medium rounded-md shadow-sm text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500" %>
         </div>
       <% end %>
 
-      <div class="mt-6 flex justify-center">
+      <div class="mt-4 flex justify-center">
         <%= render "devise/shared/links" %>
       </div>
     </div>

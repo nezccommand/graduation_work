@@ -1,15 +1,15 @@
 <header class="bg-green-100 shadow-md fixed top-0 left-0 w-full z-50">
   <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-    <div class="flex items-center space-x-3">
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-green-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+    <%= link_to root_path, class: "active:scale-98 flex items-center space-x-3 text-green-700 bg-transparent hover:bg-green-200 transition-colors rounded-md px-1 py-1" do %>
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
         <path stroke-linecap="round" stroke-linejoin="round" d="M12 2l8 4v6c0 5-3.58 9.74-8 12-4.42-2.26-8-7-8-12V6l8-4z" />
       </svg>
 
-      <div class="text-green-700 whitespace-nowrap">
+      <div class="whitespace-nowrap">
         <h1 class="text-base sm:text-xl font-extrabold leading-tight">フィッシング詐欺学習室</h1>
         <p class="text-[10px] sm:text-xs font-medium tracking-wide">-それ、ホンモノですか？-</p>
       </div>
-    </div>
+    <% end %>
 
     <div class="flex items-center justify-end space-x-4 w-full sm:w-auto mt-4">
       <div class="relative">
@@ -24,16 +24,7 @@
           </svg>
         </button>
 
-        <div id="dropdown-menu"
-            class="opacity-0 scale-95 pointer-events-none absolute right-0 mt-2 w-48 bg-white border border-green-200 rounded-lg shadow-lg z-50 transform transition-all duration-200">
-          <ul class="py-2">
-            <li><%= link_to "マイページ", "#", class: "block px-4 py-2 text-green-800 hover:bg-green-100" %></li>
-            <li><%= link_to "クイズ", "#", class: "block px-4 py-2 text-green-800 hover:bg-green-100" %></li>
-            <li><%= link_to "辞典", "#", class: "block px-4 py-2 text-green-800 hover:bg-green-100" %></li>
-            <li><%= link_to "模擬メール", "#", class: "block px-4 py-2 text-green-800 hover:bg-green-100" %></li>
-            <li><%= link_to "ログアウト", "#", method: :delete, class: "block px-4 py-2 text-red-600 hover:bg-red-50" %></li>
-          </ul>
-        </div>
+        <%= render "shared/dropdown_menu" %>
       </div>
 
       <a href="/" aria-label="ホーム"

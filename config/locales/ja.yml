@@ -12,12 +12,16 @@ ja:
         title: "ユーザー登録"
     shared:
       links:
-        log_in: "ログイン"
-        sign_up: "新規登録"
-        forgot_password: "パスワードをお忘れですか？"
+        log_in: "ログインはこちら"
+        sign_up: "ユーザー登録はこちら"
+        forgot_password: "パスワードをお忘れの方"
         resend_confirmation: "確認メールを受け取っていませんか？"
         resend_unlock: "ロック解除メールを受け取っていませんか？"
         omniauth_sign_in: "%{provider}でログイン"
+    failure:
+      user:
+        not_found_in_database: "ユーザーが見つかりません"
+      not_found_in_database: "該当するユーザーが見つかりません"
   activerecord:
     attributes:
       user:
@@ -25,6 +29,7 @@ ja:
         email: "メールアドレス"
         password: "パスワード"
         password_confirmation: "パスワード（確認用）"
+        remember_me: "ログイン状態を保持する"
   helpers:
     submit:
       create: "ユーザー登録"

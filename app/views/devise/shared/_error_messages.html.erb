@@ -1,0 +1,14 @@
+<% if resource.errors.any? %>
+  <ul class="list-disc list-inside text-sm text-red-700 space-y-2">
+    <% preferred_order = [:name, :email, :password, :password_confirmation] %>
+    <% sorted_messages = resource.errors.details
+      .sort_by { |error, _| preferred_order.index(error) || preferred_order.size }
+      .flat_map { |error, _| resource.errors.full_messages_for(error) } %>
+
+    <% sorted_messages.each do |message| %>
+      <li class="bg-red-50 p-3 rounded-md border border-red-300 shadow-sm">
+        <%= message %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>

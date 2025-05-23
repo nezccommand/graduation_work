@@ -1,0 +1,46 @@
+<div class="font-sans max-w-7xl mx-auto px-4">
+  <section class="bg-green-50 py-12 px-4 sm:px-8 rounded-xl flex justify-center">
+    <div class="bg-white w-full max-w-md rounded-xl shadow-lg p-8">
+      <h2 class="text-green-900 text-2xl sm:text-3xl font-bold mb-6 text-center border-b border-green-300 pb-2">
+        <%= t('devise.registrations.new.title') %>
+      </h2>
+
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+        <%= render "devise/shared/error_messages", resource: resource %>
+
+        <%= f.text_field :name,
+          placeholder: "ユーザーネーム",
+          autofocus: true,
+          class: "mt-4 block w-full bg-white h-12 px-4 py-2.5 rounded-md border border-gray-300 shadow-sm
+                  focus:ring-2 focus:ring-green-200 focus:border-green-400 focus:outline-none transition duration-150 ease-in-out" %>
+
+        <%= f.email_field :email,
+          placeholder: "メールアドレス",
+          autofocus: true,
+          autocomplete: "email",
+          class: "mt-4 block w-full bg-white h-12 px-4 py-2.5 rounded-md border border-gray-300 shadow-sm
+                  focus:ring-2 focus:ring-green-200 focus:border-green-400 focus:outline-none transition duration-150 ease-in-out" %>
+
+        <%= f.password_field :password,
+          placeholder: "パスワード(6文字以上)",
+          autocomplete: "new-password",
+          class: "mt-4 block w-full bg-white h-12 px-4 py-2.5 rounded-md border border-gray-300 shadow-sm
+                  focus:ring-2 focus:ring-green-200 focus:border-green-400 focus:outline-none transition duration-150 ease-in-out" %>
+
+        <%= f.password_field :password_confirmation,
+          placeholder: "パスワード(確認用)",
+          autocomplete: "new-password",
+          class: "mt-4 block w-full bg-white h-12 px-4 py-2.5 rounded-md border border-gray-300 shadow-sm
+                  focus:ring-2 focus:ring-green-200 focus:border-green-400 focus:outline-none transition duration-150 ease-in-out" %>
+
+        <div class="mt-8 active:scale-95 flex justify-center">
+          <%= f.submit t('helpers.submit.create', model: User.model_name.human), class: "inline-flex items-center px-6 py-2 border border-transparent text-m font-medium rounded-md shadow-sm text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500" %>
+        </div>
+      <% end %>
+
+      <div class="mt-4 flex justify-center">
+        <%= render "devise/shared/links" %>
+      </div>
+    </div>
+  </section>
+</div>

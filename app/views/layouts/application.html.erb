@@ -17,10 +17,13 @@
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
   </head>
 
-  <body>
+  <body class="relative">
     <%= render 'shared/header' %>
-    <main class="pt-32">
-    <%= yield %>
+
+    <main class="mt-12 pt-24 px-4">
+      <%= yield %>
+    </main>
+
     <%= render 'shared/footer' %>
   </body>
 </html>

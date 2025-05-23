@@ -1,0 +1,39 @@
+ja:
+  errors:
+    format: "%{attribute}%{message}"
+    messages:
+      not_saved: ""
+      blank: "を入力してください"
+      too_short: "は%{count}文字以上で入力してください"
+      invalid: "は正しい形式で入力してください"
+  devise:
+    registrations:
+      signed_up: "ユーザー登録が完了しました"
+      new:
+        title: "ユーザー登録"
+    sessions:
+      signed_in: "ログインしました"
+      signed_out: "ログアウトしました"
+    shared:
+      links:
+        log_in: "ログインはこちら"
+        sign_up: "ユーザー登録はこちら"
+        forgot_password: "パスワードをお忘れの方"
+        resend_confirmation: "確認メールを受け取っていませんか？"
+        resend_unlock: "ロック解除メールを受け取っていませんか？"
+        omniauth_sign_in: "%{provider}でログイン"
+    failure:
+      user:
+        not_found_in_database: "ユーザーが見つかりません"
+      not_found_in_database: "該当するユーザーが見つかりません"
+  activerecord:
+    attributes:
+      user:
+        name: "ユーザーネーム"
+        email: "メールアドレス"
+        password: "パスワード"
+        password_confirmation: "パスワード（確認用）"
+        remember_me: "ログイン状態を保持する"
+  helpers:
+    submit:
+      create: "ユーザー登録"

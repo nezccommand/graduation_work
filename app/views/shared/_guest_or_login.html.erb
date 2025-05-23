@@ -1,0 +1,15 @@
+<% if user_signed_in? %>
+  <span class="text-xs text-green-700 font-medium whitespace-nowrap sm:hidden">
+    ログイン中
+  </span>
+  <span class="hidden sm:inline text-green-700 font-medium whitespace-nowrap">
+    <%= current_user.name %>でログイン中
+  </span>
+<% else %>
+  <span class="text-xs text-green-700 font-medium whitespace-nowrap sm:hidden">
+    未ログイン
+  </span>
+  <span class="hidden sm:inline text-green-700 font-medium whitespace-nowrap">
+    ログインしていません
+  </span>
+<% end %>

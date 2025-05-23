@@ -12,10 +12,19 @@
     <% end %>
 
     <div class="flex items-center justify-end space-x-4 w-full sm:w-auto mt-4">
+      <% if user_signed_in? %>
+        <span class="text-green-700 font-medium whitespace-nowrap">
+          <%= current_user.name %>でログイン中
+        </span>
+      <% else %>
+        <span class="text-green-700 font-medium whitespace-nowrap">
+          ログインしていません
+        </span>
+      <% end %>
       <div class="relative">
         <button
           id="menu-button"
-          class="text-green-700 focus:outline-none p-2 rounded-full transition duration-200 hover:bg-green-200 active:scale-90"
+          class="text-green-700 focus:outline-none p-2 rounded-full transition hover:bg-green-200 active:scale-90"
           onclick="toggleMenu()"
         >
           <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="2"

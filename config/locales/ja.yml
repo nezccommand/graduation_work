@@ -8,8 +8,12 @@ ja:
       invalid: "は正しい形式で入力してください"
   devise:
     registrations:
+      signed_up: "ユーザー登録が完了しました"
       new:
         title: "ユーザー登録"
+    sessions:
+      signed_in: "ログインしました"
+      signed_out: "ログアウトしました"
     shared:
       links:
         log_in: "ログインはこちら"

@@ -2,7 +2,7 @@ class Admin::QuizzesController < Admin::BaseController
   before_action :set_quiz, only: %i[show edit update destroy]
 
   def index
-    @quizzes = Quiz.all
+    @quizzes = Quiz.all.order(created_at: :desc)
   end
 
   def show; end
@@ -15,7 +15,7 @@ class Admin::QuizzesController < Admin::BaseController
   def create
     @quiz = Quiz.new(quiz_params)
     if @quiz.save
-      redirect_to admin_quiz_path(@quiz), notice: "クイズを作成しました"
+      redirect_to admin_quizzes_path, notice: "クイズを作成しました"
     else
       render :new
     end
@@ -45,7 +45,7 @@ class Admin::QuizzesController < Admin::BaseController
   def quiz_params
     params.require(:quiz).permit(
       :question, :explanation, :genre,
-      choices_attributes: [:id, :content, :is_correct, :_destroy]
+      choices_attributes: [ :id, :content, :is_correct, :_destroy ]
     )
   end
 end

@@ -1,4 +1,4 @@
-class Admin::QuizzesController < ApplicationController
+class Admin::QuizzesController < Admin::BaseController
   before_action :set_quiz, only: %i[show edit update destroy]
 
   def index

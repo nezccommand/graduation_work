@@ -5,7 +5,7 @@ class Admin::BaseController < ApplicationController
 
   def require_admin
     unless current_user&.admin?
-      redirect_to root_path, alert: "アクセス権限がありません。"
+      redirect_to root_path, alert: "アクセス権限がありません。", status: :see_other
     end
   end
 end

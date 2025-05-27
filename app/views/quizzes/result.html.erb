@@ -1,0 +1,25 @@
+<div class="max-w-7xl mx-auto px-4">
+  <h2 class="text-2xl font-bold mb-6 text-center border-b border-green-300 pb-4">結果発表</h2>
+
+  <% @result.each_with_index do |res, i| %>
+    <div class="mb-8">
+      <h3 class="text-xl font-semibold mb-2">第 <%= i + 1 %> 問</h3>
+      <p class="mb-2 font-bold"><%= res[:question] %></p>
+
+      <p>
+        <strong>あなたの答え：</strong>
+        <%= res[:selected] || "未選択" %>
+        <span class="<%= res[:is_correct] ? 'text-green-600' : 'text-red-600' %> font-semibold">
+          （<%= res[:is_correct] ? "正解" : "不正解" %>）
+        </span>
+      </p>
+
+      <p>
+        <strong>正解：</strong> <%= res[:correct] %>
+      </p>
+    </div>
+  <% end %>
+  <div class="mt-10 text-center">
+    <%= link_to "トップに戻る", root_path, class: "bg-green-700 text-white px-6 py-3 rounded-lg shadow hover:bg-green-600 transition font-semibold" %>
+  </div>
+</div>

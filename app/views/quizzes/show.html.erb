@@ -1,14 +1,14 @@
 <div class="max-w-7xl mx-auto px-4">
-  <h2 class="text-2xl sm:text-3xl font-bold mb-6 text-center border-b border-green-300 pb-4">
+  <h2 class="text-2xl sm:text-3xl text-green-900 font-bold mb-6 text-center border-b border-green-300 pb-4">
     第 <%= @index %> 問
   </h2>
 
-  <p class="text-lg font-medium mb-6 text-center">
+  <p class="text-xl font-medium mb-6 text-left">
     <%= @quiz.question %>
   </p>
 
-  <%= form_with url: quizzes_answer_path(id: @index), method: :post, local: true do |form| %>
-    <div class="space-y-4">
+  <%= form_with url: answer_quiz_path(id: @index), method: :post, local: true do |form| %>
+    <div class="space-y-4 mt-12">
       <% @quiz.choices.each do |choice| %>
         <div class="relative">
           <input
@@ -33,12 +33,18 @@
       <% end %>
     </div>
 
-    <div class="mt-8 text-center">
-      <% if @index == 10 %>
-        <%= form.submit "結果を確認する", class: "active:scale-95 bg-green-700 text-white px-8 py-4 rounded-lg shadow hover:bg-green-600 transition text-lg font-semibold" %>
-      <% else %>
-        <%= form.submit "次の問題へ", class: "active:scale-95 bg-green-700 text-white px-8 py-4 rounded-lg shadow hover:bg-green-600 transition text-lg font-semibold" %>
-      <% end %>
+    <div class="mt-8">
+      <div class="<%= @index >= 2 ? 'flex justify-center gap-4' : 'text-center' %>">
+        <% if @index >= 2 %>
+          <%= link_to "前の問題に戻る", quiz_path(@index - 1), class: "inline-block text-green-700 border border-green-300 px-8 py-4 rounded-lg hover:bg-green-100 transition font-semibold w-48 text-center" %>
+        <% end %>
+
+        <% if @index == 10 %>
+          <%= form.submit "結果を確認する", class: "w-48 active:scale-95 bg-green-700 text-white px-8 py-4 rounded-lg shadow hover:bg-green-600 transition text-lg font-semibold" %>
+        <% else %>
+          <%= form.submit "次の問題へ", class: "w-48 active:scale-95 bg-green-700 text-white px-8 py-4 rounded-lg shadow hover:bg-green-600 transition text-lg font-semibold" %>
+        <% end %>
+      </div>
     </div>
   <% end %>
 </div>

@@ -1,10 +1,12 @@
 Rails.application.routes.draw do
   root "top#index"
   devise_for :users
-
-  post "quizzes/:id/answer", to: "quizzes#answer", as: "quizzes_answer"
-  get "quizzes/result", to: "quizzes#result", as: "quizzes_result"
-  get "quizzes/:id", to: "quizzes#show", as: "quizzes_show"
+  resources :quizzes, only: [:show] do
+    post :answer, on: :member
+    collection do
+      get :result
+    end
+  end
 
   namespace :admin do
     resources :quizzes

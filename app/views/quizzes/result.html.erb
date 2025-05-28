@@ -1,24 +1,43 @@
 <div class="max-w-7xl mx-auto px-4">
-  <h2 class="text-2xl font-bold mb-6 text-center border-b border-green-300 pb-4">結果発表</h2>
+  <h2 class="text-2xl sm:text-3xl text-green-900 font-bold mb-6 text-center border-b border-green-300 pb-4">結果発表</h2>
 
   <% @result.each_with_index do |res, i| %>
-    <div class="mb-8">
+    <div class="mb-10 p-4 border border-gray-200 rounded-lg shadow-sm">
       <h3 class="text-xl font-semibold mb-2">第 <%= i + 1 %> 問</h3>
-      <p class="mb-2 font-bold"><%= res[:question] %></p>
+      <p class="mb-4 font-bold"><%= res[:question] %></p>
 
-      <p>
-        <strong>あなたの答え：</strong>
-        <%= res[:selected] || "未選択" %>
-        <span class="<%= res[:is_correct] ? 'text-green-600' : 'text-red-600' %> font-semibold">
-          （<%= res[:is_correct] ? "正解" : "不正解" %>）
-        </span>
-      </p>
+      <ul class="space-y-2">
+        <% res[:choices].each do |choice_content| %>
+          <% is_selected = (choice_content == res[:selected]) %>
+          <% is_correct = (choice_content == res[:correct]) %>
 
-      <p>
-        <strong>正解：</strong> <%= res[:correct] %>
-      </p>
+          <% bg_class = "" %>
+          <% label = "" %>
+
+          <% if is_selected && is_correct %>
+            <% bg_class = "bg-green-100 border-green-400" %>
+            <% label = "（正解）" %>
+          <% elsif is_selected %>
+            <% bg_class = "bg-blue-100 border-blue-400" %>
+            <% label = "（あなたが選んだ選択肢）" %>
+          <% elsif is_correct %>
+            <% bg_class = "bg-green-50 border-green-300" %>
+            <% label = "（正解の選択肢）" %>
+          <% else %>
+            <% bg_class = "border-gray-300" %>
+          <% end %>
+
+          <li class="p-3 rounded border <%= bg_class %>">
+            <span class="font-medium"><%= choice_content %></span>
+            <% if label.present? %>
+              <span class="ml-2 text-sm text-gray-700 font-semibold"><%= label %></span>
+            <% end %>
+          </li>
+        <% end %>
+      </ul>
     </div>
   <% end %>
+
   <div class="mt-10 text-center">
     <%= link_to "トップに戻る", root_path, class: "bg-green-700 text-white px-6 py-3 rounded-lg shadow hover:bg-green-600 transition font-semibold" %>
   </div>

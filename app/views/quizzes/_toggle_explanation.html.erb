@@ -1,0 +1,30 @@
+<% if explanation.present? %>
+  <div class="mt-12 p-3 bg-blue-50 border border-blue-300 rounded text-gray-800">
+    <button
+      type="button"
+      class="w-full text-left font-semibold mt-1 mb-1 focus:outline-none flex items-center space-x-2"
+      onclick="toggleExplanation(this)"
+      aria-expanded="false"
+      aria-controls="explanation-<%= index %>"
+    >
+      <svg
+        class="w-5 h-5 text-blue-600 transition-transform duration-300 transform"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+        aria-hidden="true"
+      >
+        <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path>
+      </svg>
+      <span>解説を表示</span>
+    </button>
+    <div
+      id="explanation-<%= index %>"
+      class="explanation-content max-h-0 overflow-hidden transition-all duration-200"
+    >
+      <p><%= formatted_explanation(explanation) %></p>
+    </div>
+  </div>
+<% end %>

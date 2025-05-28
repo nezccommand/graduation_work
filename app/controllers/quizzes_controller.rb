@@ -32,20 +32,11 @@ class QuizzesController < ApplicationController
   end
 
   def result
-    @quizzes = Quiz.find(session[:quiz_ids])
-    @answers = session[:answers]
-
-    @result = @quizzes.each_with_index.map do |quiz, i|
-      correct_choice = quiz.choices.find_by(is_correct: true)
-      selected_choice = Choice.find_by(id: @answers[i].to_i)
-
-      {
-        question: quiz.question,
-        correct: correct_choice&.content,
-        selected: selected_choice&.content,
-        is_correct: selected_choice_id == correct_choice&.id,
-        choices: quiz.choices.map(&:content)
-      }
-    end
+    data = Quiz.calculate_results(session[:quiz_ids], session[:answers])
+    @result = data[:result]
+    @correct_count = data[:correct_count]
+    @total_count = data[:total_count]
+    @genre_accuracies = data[:genre_accuracies]
+    @weakest_genre = data[:weakest_genre]
   end
 end

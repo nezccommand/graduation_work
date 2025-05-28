@@ -1,40 +1,49 @@
 <div class="max-w-7xl mx-auto px-4">
-  <h2 class="text-2xl sm:text-3xl text-green-900 font-bold mb-6 text-center border-b border-green-300 pb-4">結果発表</h2>
+  <h2 class="text-2xl sm:text-4xl text-green-900 font-bold mb-6 text-center border-b border-green-300 pb-4">結果発表</h2>
+
+  <div class="mb-8 text-center text-3xl font-extrabold text-green-900 bg-green-100 border border-green-300 rounded-lg py-4 shadow-md">
+    <span><%= @total_count %>問中</span>
+    <span class="text-green-700"><%= @correct_count %>問</span>
+    <span>正解しました！🎉</span>
+  </div>
+
+  <div class="mb-8 p-4 border rounded bg-green-50 text-green-900">
+    <h3 class="text-xl font-bold mb-2">ジャンル別正答率</h3>
+
+    <ul class="space-y-2">
+      <% @genre_accuracies.each do |genre, accuracy| %>
+        <li>
+          <span class="font-semibold"><%= genre %>：</span>
+          <span><%= accuracy %>％</span>
+        </li>
+      <% end %>
+    </ul>
+
+    <% if @weakest_genre.present? %>
+      <p class="mt-4 text-red-700 font-semibold">
+        あなたは<strong><%= @weakest_genre %></strong>の問題が比較的苦手なようです。
+      </p>
+    <% end %>
+  </div>
 
   <% @result.each_with_index do |res, i| %>
+    <% is_correct_answer = (res[:selected] == res[:correct]) %>
+
     <div class="mb-10 p-4 border border-gray-200 rounded-lg shadow-sm">
-      <h3 class="text-xl font-semibold mb-2">第 <%= i + 1 %> 問</h3>
-      <p class="mb-4 font-bold"><%= res[:question] %></p>
-
-      <ul class="space-y-2">
-        <% res[:choices].each do |choice_content| %>
-          <% is_selected = (choice_content == res[:selected]) %>
-          <% is_correct = (choice_content == res[:correct]) %>
-
-          <% bg_class = "" %>
-          <% label = "" %>
-
-          <% if is_selected && is_correct %>
-            <% bg_class = "bg-green-100 border-green-400" %>
-            <% label = "（正解）" %>
-          <% elsif is_selected %>
-            <% bg_class = "bg-blue-100 border-blue-400" %>
-            <% label = "（あなたが選んだ選択肢）" %>
-          <% elsif is_correct %>
-            <% bg_class = "bg-green-50 border-green-300" %>
-            <% label = "（正解の選択肢）" %>
-          <% else %>
-            <% bg_class = "border-gray-300" %>
-          <% end %>
-
-          <li class="p-3 rounded border <%= bg_class %>">
-            <span class="font-medium"><%= choice_content %></span>
-            <% if label.present? %>
-              <span class="ml-2 text-sm text-gray-700 font-semibold"><%= label %></span>
-            <% end %>
-          </li>
+      <h3 class="text-2xl font-semibold mb-2 flex items-center space-x-3">
+        <span>第<%= i + 1 %>問</span>
+        <% if is_correct_answer %>
+          <span class="text-green-800 bg-green-200 px-2 py-1 rounded text-sm font-bold">正解</span>
+        <% else %>
+          <span class="text-red-800 bg-red-200 px-2 py-1 rounded text-sm font-bold">不正解</span>
         <% end %>
-      </ul>
+      </h3>
+
+      <p class="mt-6 mb-4 text-xl font-bold"><%= res[:question] %></p>
+
+      <%= render partial: "choice_list", locals: { choices: res[:choices], selected: res[:selected], correct: res[:correct] } %>
+
+      <%= render partial: "toggle_explanation", locals: { explanation: res[:explanation], index: i } %>
     </div>
   <% end %>
 

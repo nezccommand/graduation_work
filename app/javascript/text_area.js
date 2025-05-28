@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener("turbo:load", function () {
   const textarea = document.getElementById('auto-resize-textarea');
   if (!textarea) return;
 

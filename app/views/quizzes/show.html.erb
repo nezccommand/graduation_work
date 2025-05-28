@@ -1,0 +1,50 @@
+<div class="max-w-7xl mx-auto px-4">
+  <h2 class="text-2xl sm:text-3xl text-green-900 font-bold mb-6 text-center border-b border-green-300 pb-4">
+    第 <%= @index %> 問
+  </h2>
+
+  <p class="text-xl font-medium mb-6 text-left">
+    <%= @quiz.question %>
+  </p>
+
+  <%= form_with url: answer_quiz_path(id: @index), method: :post, local: true do |form| %>
+    <div class="space-y-4 mt-12">
+      <% @quiz.choices.each do |choice| %>
+        <div class="relative">
+          <input
+            type="radio"
+            name="selected_choice"
+            id="choice_<%= choice.id %>"
+            value="<%= choice.id %>"
+            class="peer hidden"
+          />
+
+          <label
+            for="choice_<%= choice.id %>"
+            class="block bg-white border border-green-300 rounded-lg shadow-sm p-4 peer-checked:bg-green-100 transition cursor-pointer"
+          >
+            <div class="flex items-center space-x-4">
+              <span class="text-green-900 text-base font-semibold">
+                <%= choice.content %>
+              </span>
+            </div>
+          </label>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="mt-8">
+      <div class="<%= @index >= 2 ? 'flex justify-center gap-4' : 'text-center' %>">
+        <% if @index >= 2 %>
+          <%= link_to "前の問題に戻る", quiz_path(@index - 1), class: "inline-block text-green-700 border border-green-300 px-8 py-4 rounded-lg hover:bg-green-100 transition font-semibold w-48 text-center" %>
+        <% end %>
+
+        <% if @index == 10 %>
+          <%= form.submit "結果を確認する", class: "w-48 active:scale-95 bg-green-700 text-white px-8 py-4 rounded-lg shadow hover:bg-green-600 transition text-lg font-semibold" %>
+        <% else %>
+          <%= form.submit "回答して次へ", class: "w-48 active:scale-95 bg-green-700 text-white px-8 py-4 rounded-lg shadow hover:bg-green-600 transition text-lg font-semibold" %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>

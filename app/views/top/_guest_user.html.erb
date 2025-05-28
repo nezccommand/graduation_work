@@ -13,7 +13,7 @@
       <h3 class="text-xl font-semibold mb-3 text-green-800">クイズ機能</h3>
       <ul class="list-disc list-inside text-green-900 space-y-1">
         <li>ユーザー登録なしでも利用できます。</li>
-        <li>全部で9問出題され、その後解答解説と、間違えた問題の傾向が表示されます。</li>
+        <li>全部で10問出題され、その後解答解説と、間違えた問題の傾向が表示されます。</li>
         <li>ユーザー登録をすると、過去の回答履歴が保存され、確認することができます。</li>
       </ul>
     </div>
@@ -37,7 +37,7 @@
   </div>
 
   <div class="mt-12 flex flex-col items-center gap-6 max-w-xs mx-auto">
-    <%= link_to "クイズを始める", "#", class: "active:scale-95 bg-green-700 text-white px-8 py-4 rounded-lg shadow hover:bg-green-600 transition text-lg font-semibold w-full text-center" %>
+    <%= link_to "クイズを始める", quiz_path(id: 1, quiz_start: true), class: "active:scale-95 bg-green-700 text-white px-8 py-4 rounded-lg shadow hover:bg-green-600 transition text-lg font-semibold w-full text-center" %>
     <%= link_to "用語一覧を見る", "#", class: "active:scale-95 bg-white border border-green-700 text-green-700 px-8 py-4 rounded-lg shadow hover:bg-green-50 transition text-lg font-semibold w-full text-center" %>
   </div>
 

@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root "top#index"
   devise_for :users
-  resources :quizzes, only: [:show] do
+  resources :quizzes, only: [ :show ] do
     post :answer, on: :member
     collection do
       get :result

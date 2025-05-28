@@ -2,7 +2,7 @@ module QuizzesHelper
   def formatted_explanation(text)
     return "" if text.blank?
 
-    keywords = ["正解：","他の選択肢の解説：", "解説："]
+    keywords = [ "正解：", "他の選択肢の解説：", "解説：" ]
     safe_text = h(text)
 
     keywords.each do |keyword|

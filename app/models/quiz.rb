@@ -4,7 +4,7 @@ class Quiz < ApplicationRecord
 
   def self.calculate_results(quiz_ids, answer_ids)
     quizzes = find(quiz_ids)
-    
+
     correct_count = 0
     genre_stats = Hash.new { |h, k| h[k] = { total: 0, correct: 0 } }
 

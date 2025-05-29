@@ -36,7 +36,9 @@ class Quiz < ApplicationRecord
       total > 0 ? (correct.to_f / total * 100).round : 0
     end
 
-    weakest_genre = genre_accuracies.min_by { |_genre, accuracy| accuracy }&.first
+    min_accuracy = genre_accuracies.values.min
+    min_genres = genre_accuracies.select { |_genre, accuracy| accuracy == min_accuracy }
+    weakest_genre = min_genres.size == 1 ? min_genres.keys.first : nil
 
     {
       result: result,

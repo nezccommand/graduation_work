@@ -13,8 +13,8 @@
     <link rel="icon" href="/icon.png" type="image/png">
     <link rel="icon" href="/icon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/icon.png">
-    <%= tag.link href: asset_path("application.css"), rel: "stylesheet", "data-turbo-track": "reload" %>
-    <%= tag.script src: asset_path("application.js"), type: "module", "data-turbo-track": "reload" %>
+    <link rel="stylesheet" href="/assets/application.css" data-turbo-track="reload" />
+    <script src="/assets/application.js" type="module" data-turbo-track="reload"></script>
   </head>
 
   <body class="relative">

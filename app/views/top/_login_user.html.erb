@@ -21,7 +21,7 @@
       <h3 class="text-xl font-semibold mb-3 text-green-800">用語一覧・検索</h3>
       <ul class="list-disc list-inside text-green-900 space-y-1">
         <li>実際のフィッシングメールに多い傾向などを検索することができます。</li>
-        <li class="ml-4 text-sm text-green-700 list-none pl-2">例： 「アカウントの機能制限」 「口座停止措置」 「アカウントの更新」 など</li>
+        <li class="ml-4 text-sm text-green-700 list-none pl-2">例： 「機能制限」 「口座停止措置」 「再配達」 など</li>
       </ul>
     </div>
 
@@ -35,7 +35,7 @@
 
   <div class="mt-12 flex flex-col items-center gap-6 max-w-xs mx-auto">
     <%= link_to "クイズを始める", quiz_path(id: 1, quiz_start: true), class: "active:scale-95 bg-green-700 text-white px-8 py-4 rounded-lg shadow hover:bg-green-600 transition text-lg font-semibold w-full text-center" %>
-    <%= link_to "用語一覧を見る", "#", class: "active:scale-95 bg-white border border-green-700 text-green-700 px-8 py-4 rounded-lg shadow hover:bg-green-50 transition text-lg font-semibold w-full text-center" %>
+    <%= link_to "用語一覧を見る", words_path, class: "active:scale-95 bg-white border border-green-700 text-green-700 px-8 py-4 rounded-lg shadow hover:bg-green-50 transition text-lg font-semibold w-full text-center" %>
     <%= link_to "模擬メールを送る", "#", class: "active:scale-95 bg-green-100 text-green-800 px-8 py-4 rounded-lg shadow hover:bg-green-200 transition text-lg font-semibold w-full text-center" %>
   </div>
 

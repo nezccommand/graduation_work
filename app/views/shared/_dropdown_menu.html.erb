@@ -8,7 +8,7 @@
             class: "block px-4 py-2 text-green-800 hover:bg-green-100", 
             onclick: "if (confirm('クイズを始めてもよろしいですか？')) { window.location.href='#{quiz_path(id: 1, quiz_start: true)}'; }" %>
       </li>
-      <li><%= link_to "用語一覧", "#", class: "block px-4 py-2 text-green-800 hover:bg-green-100" %></li> 
+      <li><%= link_to "用語一覧", words_path, class: "block px-4 py-2 text-green-800 hover:bg-green-100" %></li> 
       <li><%= link_to "模擬メール送信機能", "#", class: "block px-4 py-2 text-green-800 hover:bg-green-100" %></li>
       <li><%= link_to "ログアウト", destroy_user_session_path, data: { turbo_method: :delete, turbo_confirm: "ログアウトしてもよろしいですか？" }, class: "block px-4 py-2 text-red-600 hover:bg-red-50" %></li>
     </ul>
@@ -23,7 +23,7 @@
             class: "block px-4 py-2 text-green-800 hover:bg-green-100", 
             onclick: "if (confirm('クイズを始めてもよろしいですか？')) { window.location.href='#{quiz_path(id: 1, quiz_start: true)}'; }" %>
       </li>
-      <li><%= link_to "用語一覧", "#", class: "block px-4 py-2 text-green-800 hover:bg-green-100" %></li>
+      <li><%= link_to "用語一覧", words_path, class: "block px-4 py-2 text-green-800 hover:bg-green-100" %></li>
       <li><%= link_to "ログイン", new_user_session_path, class: "block px-4 py-2 text-green-800 hover:bg-green-100" %></li>
     </ul>
   </div>

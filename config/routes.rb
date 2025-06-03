@@ -1,12 +1,14 @@
 Rails.application.routes.draw do
   root "top#index"
   devise_for :users
-  resources :quizzes, only: [ :show ] do
+  resources :quizzes, only: %i[ show ] do
     post :answer, on: :member
     collection do
       get :result
     end
   end
+
+  resources :words, only: %i[ index show ]
 
   namespace :admin do
     resources :quizzes

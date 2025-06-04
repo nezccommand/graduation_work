@@ -1,6 +1,6 @@
-class Word < ApplicationRecord
-  has_many :word_tags, dependent: :destroy
-  has_many :tags, through: :word_tags
+class Sample < ApplicationRecord
+  has_many :sample_tags, dependent: :destroy
+  has_many :tags, through: :sample_tags
   
   def self.ransackable_attributes(auth_object = nil)
     ["title", "description"]

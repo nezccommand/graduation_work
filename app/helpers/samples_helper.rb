@@ -1,4 +1,4 @@
-module WordsHelper
+module SamplesHelper
   def split_sample_text_boxes(text)
     return if text.blank?
 

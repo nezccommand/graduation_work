@@ -1,0 +1,29 @@
+<div class="max-w-7xl mx-auto px-4">
+  <h2 class="text-2xl sm:text-3xl font-bold text-green-700 mb-6 border-b-2 border-green-200 pb-2"><%= @sample.title %></h2>
+
+  <div class="bg-white p-6 rounded-lg shadow mb-6">
+    <p class="text-gray-700 mb-2"><strong>簡単な説明:</strong> <%= @sample.short_description %></p>
+    <p class="text-gray-700 mb-2"><strong>詳細な説明:</strong></p>
+    <div class="prose prose-green max-w-none mb-4">
+      <%= simple_format(@sample.description) %>
+    </div>
+    <p class="text-gray-700 mb-2"><strong>文面サンプル:</strong></p>
+    <pre class="bg-gray-100 p-4 rounded text-sm text-gray-800 overflow-auto font-mono whitespace-pre-wrap"><%= @sample.sample_text %></pre>
+
+    <% if @sample.tags.any? %>
+      <div class="mt-4">
+        <p class="text-gray-700 mb-1"><strong>タグ:</strong></p>
+        <div class="flex flex-wrap gap-2">
+          <% @sample.tags.each do |tag| %>
+            <span class="bg-green-100 text-green-800 text-sm font-semibold px-2 py-1 rounded"><%= tag.name %></span>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="flex justify-between items-center mt-6">
+    <%= link_to "編集する", edit_admin_sample_path(@sample), class: "bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded" %>
+    <%= link_to "一覧へ戻る", admin_samples_path, class: "text-green-700 hover:underline" %>
+  </div>
+</div>

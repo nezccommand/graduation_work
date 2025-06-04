@@ -60,3 +60,4 @@ end
 
 gem "devise"
 gem "kaminari"
+gem "ransack"

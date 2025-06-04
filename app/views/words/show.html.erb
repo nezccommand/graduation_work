@@ -23,7 +23,7 @@
 
   <div class="mb-6">
     <% @word.tags.each do |tag| %>
-      <span class="bg-green-100 text-green-800 text-sm font-semibold px-3 py-1 rounded mr-2"><%= tag.name %></span>
+      <%= link_to tag.name, words_path(q: { tags_name_eq: tag.name }), class: "bg-green-100 text-green-800 text-sm font-semibold px-3 py-1 rounded mr-2 hover:bg-green-200" %>
     <% end %>
   </div>
 

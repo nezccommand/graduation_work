@@ -1,0 +1,51 @@
+<%# The container tag
+  - available local variables
+    current_page:  a page object for the currently displayed page
+    total_pages:   total number of pages
+    per_page:      number of items to fetch per page
+    remote:        data-remote
+    paginator:     the paginator that renders the pagination tags inside
+-%>
+<%= paginator.render do %>
+  <nav class="flex justify-center mt-8" role="navigation" aria-label="ページ送り">
+    <ul class="inline-flex items-center space-x-3 text-xl font-semibold text-green-700">
+
+      <% unless current_page.first? %>
+        <%= first_page_tag do %>
+          <li class="px-3 py-1 border border-green-300 rounded hover:bg-green-50">&laquo;</li>
+        <% end %>
+
+        <%= prev_page_tag do %>
+          <li class="px-3 py-1 border border-green-300 rounded hover:bg-green-50">&lsaquo;</li>
+        <% end %>
+      <% end %>
+
+      <% each_page do |page| %>
+        <% if page.display_tag? %>
+          <%= page_tag page do %>
+            <li class="px-3 py-1 border rounded 
+              <%= 'bg-green-100 text-green-900 font-bold' if page.current? %> 
+              hover:bg-green-50">
+              <%= page.number %>
+            </li>
+          <% end %>
+        <% elsif !page.was_truncated? %>
+          <%= gap_tag do %>
+            <li class="px-3 py-1 text-gray-400">…</li>
+          <% end %>
+        <% end %>
+      <% end %>
+
+      <% unless current_page.last? || current_page.out_of_range? %>
+        <%= next_page_tag do %>
+          <li class="px-3 py-1 border border-green-300 rounded hover:bg-green-50">&rsaquo;</li>
+        <% end %>
+
+        <%= last_page_tag do %>
+          <li class="px-3 py-1 border border-green-300 rounded hover:bg-green-50">&raquo;</li>
+        <% end %>
+      <% end %>
+
+    </ul>
+  </nav>
+<% end %>

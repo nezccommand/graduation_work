@@ -24,11 +24,12 @@
 
       <div class="mb-6">
         <label class="block text-gray-700 font-semibold mb-1">関連タグ</label>
+        <%= hidden_field_tag "sample[tag_ids][]", "" %>
         <div class="flex flex-wrap gap-2">
           <% @tags.each do |tag| %>
             <div class="flex items-center">
-              <%= check_box_tag "word[tag_ids][]", tag.id, word.tag_ids.include?(tag.id), id: "tag_#{tag.id}", class: "mr-1" %>
-              <%= label_tag "tag_#{tag.id}", tag.name, class: "text-gray-600" %>
+              <%= f.check_box :tag_ids, { multiple: true, class: "mr-1" }, tag.id, nil %>
+              <%= f.label :tag_ids, tag.name, value: tag.id, class: "text-gray-600" %>
             </div>
           <% end %>
         </div>

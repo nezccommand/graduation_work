@@ -29,6 +29,8 @@ class Admin::SamplesController < Admin::BaseController
     if @sample.update(sample_params)
       redirect_to admin_sample_path(@sample), notice: "サンプルを更新しました"
     else
+      @errors = @sample.errors.full_messages
+      @debug_params = params[:sample].inspect
       render :edit
     end
   end
@@ -50,7 +52,6 @@ class Admin::SamplesController < Admin::BaseController
       :short_description,
       :description,
       :sample_text,
-      :icon_url,
       tag_ids: []
     )
   end

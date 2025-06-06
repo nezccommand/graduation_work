@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   end
 
   resources :samples, only: %i[ index show ]
+  resource :mypage, only: %i[ show ]
 
   namespace :admin do
     resources :quizzes

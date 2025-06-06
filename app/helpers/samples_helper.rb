@@ -9,12 +9,4 @@ module SamplesHelper
       end
     end.join.html_safe
   end
-
-  def double_linebreak_simple_format(text)
-    return if text.blank?
-
-    doubled_text = text.gsub(/\n/, "\n\n")
-
-    simple_format(doubled_text)
-  end
 end

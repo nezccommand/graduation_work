@@ -6,7 +6,7 @@
   </div>
 
   <div class="grid gap-6">
-    <% @words.each do |sample| %>
+    <% @samples.each do |sample| %>
       <div class="bg-white shadow-md rounded-lg p-6 hover:shadow-lg transition">
         <h3 class="text-lg font-semibold text-green-800 mb-2"><%= sample.title %></h3>
         <p class="text-sm text-gray-600 mb-2"><%= truncate(sample.short_description, length: 100) %></p>

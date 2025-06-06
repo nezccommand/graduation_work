@@ -1,14 +1,14 @@
 <div class="max-w-7xl mx-auto px-4">
   <div class="bg-white border border-gray-200 rounded-xl shadow-lg p-8 mb-10 max-w-4xl mx-auto">
     <h3 class="text-xl sm:text-2xl font-semibold text-green-800 mb-6 text-center">
-      🔍 用語を検索する
+      🔍 実例を検索する
     </h3>
 
     <%= search_form_for @q, url: samples_path, method: :get do |f| %>
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
         <div class="relative">
           <label class="block text-sm font-medium text-gray-700 mb-1">
-            キーワード（タイトル・説明）
+            キーワード（タイトル・本文）
           </label>
           <div class="relative">
             <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -17,7 +17,7 @@
                   d="M21 21l-4.35-4.35M17 11a6 6 0 11-12 0 6 6 0 0112 0z" />
               </svg>
             </div>
-            <%= f.search_field :title_or_description_cont,
+            <%= f.search_field :title_or_sample_text_cont,
               placeholder: "例： 「口座」 「ポイント」など",
               class: "pl-10 pr-4 py-2 w-full border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 transition duration-150 ease-in-out" %>
           </div>
@@ -26,7 +26,7 @@
         <div class="relative">
           <div class="relative">
             <%= f.label :tags_id_eq, "タグ", class: "block text-sm font-medium text-gray-700 mb-1" %>
-            <%= f.collection_select :tags_id_eq, Tag.order(Arel.sql("CASE WHEN name LIKE '%系' THEN 1 ELSE 0 END, name ASC")), :id, :name, { include_blank: "すべてのタグ" },
+            <%= f.collection_select :tags_id_eq, Tag.order(Arel.sql("CASE WHEN name LIKE '%型' THEN 1 ELSE 0 END, name ASC")), :id, :name, { include_blank: "すべてのタグ" },
               { class: "w-full border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 py-2 px-3" } %>
           </div>
         </div>
@@ -39,7 +39,7 @@
   </div>
 
   <h2 class="text-2xl sm:text-4xl text-green-900 font-bold mb-6 text-center border-b border-green-300 pb-4">
-    <%= params[:q].blank? ? "用語一覧" : "検索結果" %>
+    <%= params[:q].blank? ? "実例一覧" : "検索結果" %>
   </h2>
 
   <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">

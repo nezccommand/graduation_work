@@ -8,11 +8,12 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :words, only: %i[ index show ]
+  resources :samples, only: %i[ index show ]
+  resource :mypage, only: %i[ show ]
 
   namespace :admin do
     resources :quizzes
-    resources :words
+    resources :samples
     resources :tags
   end
 

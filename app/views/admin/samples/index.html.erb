@@ -1,0 +1,28 @@
+<div class="max-w-7xl mx-auto px-4">
+  <h2 class="text-2xl font-bold mb-6 text-green-700">登録済みメール一覧</h2>
+
+  <div class="mb-6 text-center">
+    <%= link_to "用語を作成", new_admin_sample_path, class: "inline-block bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded-lg transition" %>
+  </div>
+
+  <div class="grid gap-6">
+    <% @samples.each do |sample| %>
+      <div class="bg-white shadow-md rounded-lg p-6 hover:shadow-lg transition">
+        <h3 class="text-lg font-semibold text-green-800 mb-2"><%= sample.title %></h3>
+        <p class="text-sm text-gray-600 mb-2"><%= truncate(sample.short_description, length: 100) %></p>
+
+        <% if sample.tags.any? %>
+          <div class="mb-2 flex flex-wrap gap-2">
+            <% sample.tags.each do |tag| %>
+              <span class="bg-green-100 text-green-800 text-xs font-semibold px-2 py-1 rounded"><%= tag.name %></span>
+            <% end %>
+          </div>
+        <% end %>
+
+        <div class="flex items-center text-sm text-gray-700 space-x-2">
+          <%= link_to "詳細を見る", admin_sample_path(sample), class: "text-green-700 hover:underline" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

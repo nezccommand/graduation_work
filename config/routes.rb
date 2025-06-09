@@ -17,6 +17,8 @@ Rails.application.routes.draw do
     resources :tags
   end
 
+  mount LetterOpenerWeb::Engine, at: "/letter_opener"
+
   get "up" => "rails/health#show", as: :rails_health_check
 
   get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker

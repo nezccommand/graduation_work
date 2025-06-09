@@ -1,16 +1,30 @@
-<h2>Resend confirmation instructions</h2>
+<div class="font-sans max-w-7xl mx-auto px-4">
+  <section class="bg-green-50 py-12 px-4 sm:px-8 rounded-xl flex justify-center">
+    <div class="bg-white w-full max-w-md rounded-xl shadow-lg p-8">
+      <h2 class="text-green-900 text-2xl sm:text-3xl font-bold mb-6 text-center border-b border-green-300 pb-2">
+        <%= t("devise.confirmations.new.title") %>
+      </h2>
 
-<%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email", value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email) %>
-  </div>
+      <%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
+        <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="actions">
-    <%= f.submit "Resend confirmation instructions" %>
-  </div>
-<% end %>
+        <%= f.email_field :email,
+          placeholder: "メールアドレス",
+          autofocus: true,
+          autocomplete: "email",
+          value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email),
+          class: "mt-4 block w-full bg-white h-12 px-4 py-2.5 rounded-md border border-gray-300 shadow-sm
+                  focus:ring-2 focus:ring-green-200 focus:border-green-400 focus:outline-none transition duration-150 ease-in-out" %>
 
-<%= render "devise/shared/links" %>
+        <div class="active:scale-95 mt-8 flex justify-center">
+          <%= f.submit t("devise.confirmations.new.submit"), class: "inline-flex items-center px-6 py-2 border border-transparent text-m font-medium rounded-md shadow-sm text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500" %>
+        </div>
+      <% end %>
+
+      <div class="mt-4 flex justify-center">
+        <%= render "devise/shared/links" %>
+      </div>
+    </div>
+  </section>
+</div>

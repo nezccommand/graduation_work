@@ -1,14 +1,29 @@
 ja:
   errors:
     format: "%{attribute}%{message}"
+    attributes:
+      email:
+        taken: "はすでに使われています"
     messages:
       not_saved: ""
       blank: "を入力してください"
       too_short: "は%{count}文字以上で入力してください"
       invalid: "は正しい形式で入力してください"
+      taken: "はすでに使用されています"
   devise:
+    mailer:
+      confirmation_instructions:
+        subject: "【フィッシング詐欺学習室】ユーザー登録時のメール認証"
+    confirmations:
+      new:
+        title: "ユーザー認証メール"
+        submit: "認証メールを送る"
+        instructions: "メールアドレスを入力してください。認証メールを送ります。"
     registrations:
       signed_up: "ユーザー登録が完了しました"
+      signed_up_but_unconfirmed: "本人確認用のメールを送信しました。メール内のリンクからアカウントを有効化してください。"
+      user:
+        signed_up_but_unconfirmed: "本人確認用のメールを送信しました。メール内のリンクからアカウントを有効化してください。"
       new:
         title: "ユーザー登録"
     sessions:
@@ -19,8 +34,8 @@ ja:
         log_in: "ログインはこちら"
         sign_up: "ユーザー登録はこちら"
         forgot_password: "パスワードをお忘れの方"
-        resend_confirmation: "確認メールを受け取っていませんか？"
-        resend_unlock: "ロック解除メールを受け取っていませんか？"
+        resend_confirmation: "認証メールが届いていない方はこちら"
+        resend_unlock: "ロック解除メールが届いていない方はこちら"
         omniauth_sign_in: "%{provider}でログイン"
     failure:
       user:
@@ -34,6 +49,16 @@ ja:
         password: "パスワード"
         password_confirmation: "パスワード（確認用）"
         remember_me: "ログイン状態を保持する"
+      errors:
+        models:
+          user:
+            attributes:
+              email:
+                taken: "このメールアドレスはすでに使用されています"
+            taken: "すでに登録されています"
+      attributes:
+        user:
+          email: "メールアドレス"
   helpers:
     submit:
       create: "ユーザー登録"

@@ -1,5 +1,18 @@
-<p>Welcome <%= @email %>!</p>
+<p>※このメールは、【フィッシング詐欺学習室】にご登録いただいたメールアドレス宛に自動的に送信しています。</p>
 
-<p>You can confirm your account email through the link below:</p>
+<p><%= @email %> 様</p>
+<br>
+<p>この度は、【フィッシング詐欺学習室】のユーザー登録をしていただき誠にありがとうございます。</p>
+<p>現在、仮登録の状態です。</p>
+<p>以下のリンクをクリックしてメールアドレスの認証を完了してください。</p>
 
-<p><%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token) %></p>
+<p>
+  <%= link_to confirmation_url(@resource, confirmation_token: @token), confirmation_url(@resource, confirmation_token: @token) %>
+</p>
+
+<hr class="my-4">
+<p>【サービス名】フィッシング詐欺学習室</p>
+<p>【連絡先】X (旧Twitter)：<a href="https://x.com/nzk_65b" target="_blank">ねずっこ(@nzk_65b)</a></p>
+<p>※本メールは送信専用です。ご不明点がある場合は上記SNSなどからご連絡ください。</p>
+<p>※本メールに身に覚えの無い場合は、本メールを破棄していただきますようお願いいたします。</p>
+

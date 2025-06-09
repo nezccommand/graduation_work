@@ -13,50 +13,35 @@
 
       <div class="bg-white border border-green-200 rounded-lg shadow-sm p-6 mb-10">
         <h3 class="text-xl font-semibold mb-3 text-green-800">クイズの履歴</h3>
-        <% if false %>
+
+        <% if @quiz_histories.any? %>
+          <ul class="list-disc list-inside text-green-900 space-y-1">
+            <% @quiz_histories.each do |history| %>
+              <li>
+                <%= history.created_at.strftime("%Y年%-m月%-d日") %>：
+                <%= history.total_count %>問中<%= history.correct_count %>問正解
+              </li>
+            <% end %>
+          </ul>
+        <% else %>
           <p>まだクイズの履歴がありません。</p>
-        <% else %>
-          <ul class="list-disc list-inside text-green-900 space-y-1">
-            <li>2025年6月3日：10問中8問正解</li>
-            <li>2025年5月28日：10問中7問正解</li>
-            <li>2025年5月20日：10問中6問正解</li>
-          </ul>
-          <div class="mt-4">
-            <%= link_to "全履歴を表示", "#", class: "text-green-700 underline hover:text-green-900 text-sm" %>
-          </div>
         <% end %>
       </div>
 
       <div class="bg-white border border-green-200 rounded-lg shadow-sm p-6 mb-10">
-        <h3 class="text-xl font-semibold mb-3 text-green-800">お気に入りした実例</h3>
-        <% if false %>
-          <p>お気に入りした実例はまだありません。</p>
-        <% else %>
-          <ul class="space-y-2 text-green-900">
-            <li>
-              <%= link_to "【三井住友銀行】未読メッセージによる制限について", sample_path(1),
-                  class: "text-green-800 hover:underline" %>
-            </li>
-            <li>
-              <%= link_to "【Amazon】異常なログインを検知しました", sample_path(2),
-                  class: "text-green-800 hover:underline" %>
-            </li>
-          </ul>
-        <% end %>
+        <h3 class="text-xl font-semibold mb-3 text-green-800">メール事例のブックマーク(実装中)</h3>
+          <p>ブックマークはまだありません。</p>
       </div>
 
-      <div class="bg-white border border-green-200 rounded-lg shadow-sm p-6 mb-10">
-        <h3 class="text-xl font-semibold mb-3 text-green-800">模擬メール送信履歴</h3>
-        <% if false %>
-          <p>まだ送信履歴がありません。</p>
-        <% else %>
-          <ul class="list-disc list-inside text-green-900 space-y-1">
-            <li>2025年6月1日：楽天カードを装ったメールを送信</li>
-            <li>2025年5月15日：Apple IDの確認メールを送信</li>
-          </ul>
+      <div class="mt-12 flex flex-col items-center gap-6 max-w-xs mx-auto">
+        <%= link_to "クイズを始める", quiz_path(id: 1, quiz_start: true), class: "active:scale-95 bg-green-700 text-white px-8 py-4 rounded-lg shadow hover:bg-green-600 transition text-lg font-semibold w-full text-center" %>
+        <%= link_to "実例一覧を見る", samples_path, class: "active:scale-95 bg-white border border-green-700 text-green-700 px-8 py-4 rounded-lg shadow hover:bg-green-50 transition text-lg font-semibold w-full text-center" %>
+        <% if user_signed_in? %>
+          <%= link_to "模擬メールを送る(実装中)", "#",
+              class: "active:scale-95 bg-green-100 text-green-800 px-8 py-4 rounded-lg shadow transition text-lg font-semibold w-full text-center cursor-not-allowed opacity-50",
+              aria: { disabled: true } %>
         <% end %>
       </div>
-
       <div class="mt-12 flex flex-col items-center gap-3 max-w-xs mx-auto">
         <%= link_to "トップページに戻る", root_path,
             class: "active:scale-95 bg-green-50 border border-green-300 text-green-700 px-6 py-2 rounded-md shadow hover:bg-green-100 transition text-sm font-medium w-full text-center" %>

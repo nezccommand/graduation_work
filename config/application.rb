@@ -30,5 +30,18 @@ module Myapp
       g.test_framework nil
     end
     config.i18n.default_locale = :ja
+
+    config.i18n.load_path += Dir[Rails.root.join("config", "locales", "**", "*.{rb,yml}").to_s]
+
+    config.i18n.load_path = config.i18n.load_path.sort_by do |path|
+      case
+      when path.include?("config/locales/ja.yml")
+        0
+      when path.include?("devise.ja.yml")
+        1
+      else
+        2
+      end
+    end
   end
 end

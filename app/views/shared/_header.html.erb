@@ -1,17 +1,5 @@
 <header class="bg-green-100 shadow-md fixed top-0 left-0 w-full z-50">
   <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-  <% if user_signed_in? %>
-    <%= link_to mypage_path, class: "active:scale-98 flex items-center space-x-3 text-green-700 bg-transparent hover:bg-green-200 transition-colors rounded-md px-1 py-1" do %>
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 sm:h-10 sm:w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M12 2l8 4v6c0 5-3.58 9.74-8 12-4.42-2.26-8-7-8-12V6l8-4z" />
-      </svg>
-
-      <div class="whitespace-nowrap">
-        <h1 class="text-sm sm:text-xl font-extrabold leading-tight">フィッシング詐欺学習室</h1>
-        <p class="text-xs sm:text-xs font-medium tracking-wide">-それ、ホンモノですか？-</p>
-      </div>
-    <% end %>
-  <% else %>
     <%= link_to root_path, class: "active:scale-98 flex items-center space-x-3 text-green-700 bg-transparent hover:bg-green-200 transition-colors rounded-md px-1 py-1" do %>
       <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 sm:h-10 sm:w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
         <path stroke-linecap="round" stroke-linejoin="round" d="M12 2l8 4v6c0 5-3.58 9.74-8 12-4.42-2.26-8-7-8-12V6l8-4z" />
@@ -22,7 +10,6 @@
         <p class="text-xs sm:text-xs font-medium tracking-wide">-それ、ホンモノですか？-</p>
       </div>
     <% end %>
-  <% end %>
 
     <div class="flex items-center justify-end space-x-4 w-full sm:w-auto mt-4">
       <%= render "shared/guest_or_login" %>

@@ -16,14 +16,13 @@ Rails.application.routes.draw do
   resources :samples, only: %i[ index show ]
   resource :mypage, only: %i[ show ]
 
-  resource :training_email, only: %i[ new create ] do
+  resource :simulation_email, only: %i[ new create ] do
     get :complete, on: :collection
   end
 
   namespace :admin do
     resources :quizzes
     resources :samples
-    resources :tags
   end
 
   if Rails.env.development?

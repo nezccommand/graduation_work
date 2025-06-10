@@ -1,0 +1,41 @@
+<div class="max-w-7xl mx-auto px-4">
+  <section class="bg-green-50 py-12 px-4 sm:px-8 rounded-xl">
+    <div class="max-w-2xl mx-auto text-green-900">
+      <h2 class="text-2xl sm:text-3xl font-bold mb-6 text-center border-b border-green-300 pb-4">
+        模擬フィッシングメールの送信について
+      </h2>
+
+      <div class="max-w-2xl mx-auto px-6 py-12 text-center bg-white shadow-lg rounded-xl border border-green-200">
+        <p class="text-gray-700 mb-6">
+          この機能では、フィッシング詐欺の手口を体験的に学ぶために、<br>
+          模擬的な詐欺メールを実際に受信して内容を確認していただきます。
+        </p>
+
+        <p class="text-gray-700 mb-4">
+          以下のメールアドレスに模擬フィッシングメールを送信します：
+        </p>
+
+        <p class="text-lg font-semibold text-green-800 mb-6">
+          <%= current_user.email %>
+        </p>
+
+        <p class="text-lg text-red-600 mb-4 text-center font-bold">
+          【ご注意ください】
+        </p>
+        <ul class="list-disc list-inside text-left text-sm text-red-700 mb-8">
+          <li>この模擬メールには<strong>リンクは一切含まれていません</strong>。</li>
+          <li>模擬メール内にある<strong>ボタンは見た目だけのもので、情報入力画面などには遷移しません</strong>。</li>
+          <li>実際のフィッシングメールは、個人情報を盗むためのリンクや入力フォームが含まれます。</li>
+          <li>メールの<strong>件名、送信元、内容の違和感</strong>に注意を向けてください。</li>
+          <li>模擬メールの内容は、練習用に設計されています。</li>
+        </ul>
+      </div>
+
+      <div class="mt-12 flex flex-col items-center gap-6 max-w-xs mx-auto">
+        <%= form_with url: simulation_email_path, method: :post, html: { onsubmit: "return confirm('本当に模擬メールを送信しますか？送信後は内容を確認し、本物の詐欺メールに騙されないようにご注意ください');" } do %>
+          <%= submit_tag "模擬メールを送信する", class: "active:scale-95 bg-green-900 text-white px-8 py-5 rounded-xl shadow-lg hover:bg-green-800 transition text-xl font-bold w-full text-center" %>
+        <% end %>
+      </div>
+    </div>
+  </section>
+</div>

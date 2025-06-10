@@ -7,7 +7,8 @@
       <p class="text-base sm:text-lg leading-relaxed mb-10">
         近年増加傾向にある、フィッシング詐欺への学習を目的としたサービスです。<br>
         クイズを解く、用語を調べる、実際のフィッシングメールを模したメールを送る機能などを通して、<br>
-        フィッシング詐欺についての理解が少しでも深まれば幸いです。
+        フィッシング詐欺についての理解が少しでも深まれば幸いです。<br>
+        そして、1人でも多くの方がフィッシング詐欺に騙されないことを願っています。
       </p>
 
       <div class="space-y-10">
@@ -43,9 +44,8 @@
         <%= link_to "クイズを始める", quiz_path(id: 1, quiz_start: true), class: "active:scale-95 bg-green-700 text-white px-8 py-4 rounded-lg shadow hover:bg-green-600 transition text-lg font-semibold w-full text-center" %>
         <%= link_to "実例一覧を見る", samples_path, class: "active:scale-95 bg-white border border-green-700 text-green-700 px-8 py-4 rounded-lg shadow hover:bg-green-50 transition text-lg font-semibold w-full text-center" %>
         <% if user_signed_in? %>
-          <%= link_to "模擬メールを送る(実装中)", "#",
-              class: "active:scale-95 bg-green-100 text-green-800 px-8 py-4 rounded-lg shadow transition text-lg font-semibold w-full text-center cursor-not-allowed opacity-50",
-              aria: { disabled: true } %>
+          <%= link_to "模擬メールを送る", new_simulation_email_path,
+              class: "active:scale-95 bg-green-100 hover:bg-green-200 text-green-800 px-8 py-4 rounded-lg shadow transition text-lg font-semibold w-full text-center" %>
         <% end %>
       </div>
 

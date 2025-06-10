@@ -37,9 +37,8 @@
         <%= link_to "クイズを始める", quiz_path(id: 1, quiz_start: true), class: "active:scale-95 bg-green-700 text-white px-8 py-4 rounded-lg shadow hover:bg-green-600 transition text-lg font-semibold w-full text-center" %>
         <%= link_to "実例一覧を見る", samples_path, class: "active:scale-95 bg-white border border-green-700 text-green-700 px-8 py-4 rounded-lg shadow hover:bg-green-50 transition text-lg font-semibold w-full text-center" %>
         <% if user_signed_in? %>
-          <%= link_to "模擬メールを送る(実装中)", "#",
-              class: "active:scale-95 bg-green-100 text-green-800 px-8 py-4 rounded-lg shadow transition text-lg font-semibold w-full text-center cursor-not-allowed opacity-50",
-              aria: { disabled: true } %>
+          <%= link_to "模擬メールを送る", new_simulation_email_path,
+              class: "active:scale-95 bg-green-100 hover:bg-green-200 text-green-800 px-8 py-4 rounded-lg shadow transition text-lg font-semibold w-full text-center" %>
         <% end %>
       </div>
       <div class="mt-12 flex flex-col items-center gap-3 max-w-xs mx-auto">

@@ -31,7 +31,7 @@ module Myapp
     end
     config.i18n.default_locale = :ja
 
-    config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}').to_s]
+    config.i18n.load_path += Dir[Rails.root.join("config", "locales", "**", "*.{rb,yml}").to_s]
 
     config.i18n.load_path = config.i18n.load_path.sort_by do |path|
       case

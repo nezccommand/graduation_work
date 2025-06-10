@@ -10,7 +10,7 @@
 
     <% if user_signed_in? %>
       <li><%= link_to "マイページ", mypage_path, class: "block px-4 py-2 text-green-800 hover:bg-green-100" %></li>
-      <li><%= link_to "模擬メール送信機能", "#", class: "block px-4 py-2 text-green-800 hover:bg-green-100" %></li>
+      <li><%= link_to "模擬メール送信機能", new_simulation_email_path, class: "block px-4 py-2 text-green-800 hover:bg-green-100" %></li>
       <li><%= link_to "ログアウト", destroy_user_session_path, 
                     data: { turbo_method: :delete, turbo_confirm: "ログアウトしてもよろしいですか？" }, 
                     class: "block px-4 py-2 text-red-600 hover:bg-red-50" %></li>

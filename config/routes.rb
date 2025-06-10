@@ -26,7 +26,9 @@ Rails.application.routes.draw do
     resources :tags
   end
 
-  mount LetterOpenerWeb::Engine, at: "/letter_opener"
+  if Rails.env.development?
+    mount LetterOpenerWeb::Engine, at: "/letter_opener"
+  end
 
   get "up" => "rails/health#show", as: :rails_health_check
 

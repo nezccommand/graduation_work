@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_06_09_060758) do
+ActiveRecord::Schema[7.2].define(version: 2025_06_11_072347) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -21,6 +21,14 @@ ActiveRecord::Schema[7.2].define(version: 2025_06_09_060758) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["quiz_id"], name: "index_choices_on_quiz_id"
+  end
+
+  create_table "email_logs", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.datetime "sent_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_email_logs_on_user_id"
   end
 
   create_table "quiz_histories", force: :cascade do |t|
@@ -84,6 +92,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_06_09_060758) do
   end
 
   add_foreign_key "choices", "quizzes"
+  add_foreign_key "email_logs", "users"
   add_foreign_key "quiz_histories", "users"
   add_foreign_key "sample_tags", "samples"
   add_foreign_key "sample_tags", "tags"

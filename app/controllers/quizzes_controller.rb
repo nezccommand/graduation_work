@@ -39,12 +39,14 @@ class QuizzesController < ApplicationController
     @genre_accuracies = data[:genre_accuracies]
     @weakest_genre = data[:weakest_genre]
 
-    current_user.quiz_histories.create!(
-      correct_count: @correct_count,
-      total_count: @total_count
-    )
+    if current_user
+      current_user.quiz_histories.create!(
+        correct_count: @correct_count,
+        total_count: @total_count
+      )
 
-    excess_histories = current_user.quiz_histories.order(created_at: :desc).offset(50)
-    excess_histories.destroy_all if excess_histories.exists?
+      excess_histories = current_user.quiz_histories.order(created_at: :desc).offset(50)
+      excess_histories.destroy_all if excess_histories.exists?
+    end
   end
 end

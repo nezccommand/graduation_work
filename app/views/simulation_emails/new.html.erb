@@ -28,14 +28,24 @@
           <li>実際のフィッシングメールは、個人情報を盗むためのリンクや入力フォームが含まれます。</li>
           <li>メールの<strong>件名、送信元、内容の違和感</strong>に注意を向けてください。</li>
           <li>模擬メールの内容は、練習用に設計されています。</li>
+          <li>セキュリティの観点から、1日の送信上限は5回に設定しています。</li>
         </ul>
       </div>
 
       <div class="mt-12 flex flex-col items-center gap-6 max-w-xs mx-auto">
-        <%= form_with url: simulation_email_path, method: :post, html: { onsubmit: "return confirm('本当に模擬メールを送信しますか？送信後は内容を確認し、本物の詐欺メールに騙されないようにご注意ください');" } do %>
-          <%= submit_tag "模擬メールを送信する", class: "active:scale-95 bg-green-900 text-white px-8 py-5 rounded-xl shadow-lg hover:bg-green-800 transition text-xl font-bold w-full text-center" %>
+        <% if current_user.can_send_phishing_email? %>
+          <%= form_with url: simulation_email_path, method: :post, html: { onsubmit: "return confirm('本当に模擬メールを送信しますか？送信後は詐欺メールと混同しないようご注意ください')" } do %>
+            <%= submit_tag "模擬メールを送信する", class: "active:scale-95 bg-green-900 text-white px-8 py-5 rounded-xl shadow-lg hover:bg-green-800 transition text-xl font-bold w-full text-center" %>
+          <% end %>
+        <% else %>
+          <button disabled class="bg-gray-400 text-white px-8 py-5 rounded-xl text-xl font-bold w-full text-center opacity-70 cursor-not-allowed">
+            本日の送信上限に達しました
+          </button>
         <% end %>
       </div>
+      <p class="mt-4 text-sm text-gray-600 text-center">
+        本日の残り送信可能回数: <%= current_user.remaining_email_sends %> 回
+      </p>
     </div>
   </section>
 </div>

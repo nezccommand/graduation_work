@@ -1,6 +1,17 @@
 require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
+  config.action_mailer.default_url_options = { protocol: "https", host: "phish-learning.onrender.com" }
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address:              "smtp.gmail.com",
+    port:                 587,
+    domain:               "gmail.com",
+    user_name:            ENV["GMAIL_USERNAME"],     # 例: your.email@gmail.com
+    password:             ENV["GMAIL_APP_PASSWORD"], # 先ほど作成したアプリパスワード
+    authentication:       "plain",
+    enable_starttls_auto: true
+  }
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Code is not reloaded between requests.

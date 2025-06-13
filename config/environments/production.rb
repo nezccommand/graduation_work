@@ -7,8 +7,8 @@ Rails.application.configure do
     address:              "smtp.gmail.com",
     port:                 587,
     domain:               "gmail.com",
-    user_name:            ENV["GMAIL_USERNAME"],     # 例: your.email@gmail.com
-    password:             ENV["GMAIL_APP_PASSWORD"], # 先ほど作成したアプリパスワード
+    user_name:            ENV["GMAIL_USERNAME"],
+    password:             ENV["GMAIL_APP_PASSWORD"],
     authentication:       "plain",
     enable_starttls_auto: true
   }

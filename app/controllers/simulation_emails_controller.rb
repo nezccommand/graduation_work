@@ -12,7 +12,7 @@ class SimulationEmailsController < ApplicationController
 
     PhishingMailer.send_random_email(current_user).deliver_now
 
-    PhishingEmailLog.create!(user: current_user, sent_at: Time.zone.now)
+    EmailLog.create!(user: current_user, sent_at: Time.zone.now)
     redirect_to complete_simulation_email_path
   end
 
@@ -22,6 +22,6 @@ class SimulationEmailsController < ApplicationController
   private
 
   def over_daily_limit?(user)
-    PhishingEmailLog.where(user: user).today.count >= 10
+    EmailLog.where(user: user).today.count >= 5
   end
 end

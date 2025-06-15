@@ -45,7 +45,7 @@ class QuizzesController < ApplicationController
         total_count: @total_count
       )
 
-      excess_histories = current_user.quiz_histories.order(created_at: :desc).offset(50)
+      excess_histories = current_user.quiz_histories.order(created_at: :desc).offset(10)
       excess_histories.destroy_all if excess_histories.exists?
     end
   end

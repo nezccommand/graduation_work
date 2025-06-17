@@ -8,9 +8,9 @@ class QuizzesController < ApplicationController
     end
 
     if session[:quiz_ids].blank?
-      genre1 = Quiz.where(genre: "基本知識").order("RANDOM()").limit(5)
-      genre2 = Quiz.where(genre: "対応方法").order("RANDOM()").limit(5)
-      session[:quiz_ids] = (genre1 + genre2).map(&:id)
+      genre1_ids = Quiz.where(genre: "基本知識").order("RANDOM()").limit(5).pluck(:id)
+      genre2_ids = Quiz.where(genre: "対応方法").order("RANDOM()").limit(5).pluck(:id)
+      session[:quiz_ids] = genre1_ids + genre2_ids
     end
 
     @index = params[:id].to_i

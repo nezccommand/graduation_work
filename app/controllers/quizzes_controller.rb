@@ -15,7 +15,6 @@ class QuizzesController < ApplicationController
 
     @index = params[:id].to_i
 
-
     quiz_id = session[:quiz_ids][@index - 1]
     @quiz = Quiz.find(quiz_id)
   end
@@ -43,7 +42,7 @@ class QuizzesController < ApplicationController
       current_user.quiz_histories.create!(
         correct_count: @correct_count,
         total_count: @total_count
-      )
+        )
 
       excess_histories = current_user.quiz_histories.order(created_at: :desc).offset(10)
       excess_histories.destroy_all if excess_histories.exists?

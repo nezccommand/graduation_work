@@ -63,3 +63,6 @@ end
 gem "devise"
 gem "kaminari"
 gem "ransack"
+gem 'omniauth'
+gem 'omniauth-rails_csrf_protection'
+gem 'omniauth-google-oauth2'

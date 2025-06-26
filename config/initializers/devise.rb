@@ -276,9 +276,9 @@ Devise.setup do |config|
                   Rails.application.credentials.google[:client_id],
                   Rails.application.credentials.google[:client_secret],
                   {
-                    scope: 'userinfo.email, userinfo.profile',
-                    prompt: 'select_account',
-                    access_type: 'offline',
+                    scope: "userinfo.email, userinfo.profile",
+                    prompt: "select_account",
+                    access_type: "offline",
                     provider_ignores_state: false # ← これを追加！
                   }
 

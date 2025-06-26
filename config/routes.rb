@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   devise_for :users, controllers: {
     registrations: "users/registrations",
     confirmations: "users/confirmations",
-    omniauth_callbacks: 'users/omniauth_callbacks'
+    omniauth_callbacks: "users/omniauth_callbacks"
   }
 
   get "confirmation_sent", to: "static_pages#confirmation_sent", as: "confirmation_sent"

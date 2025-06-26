@@ -2,7 +2,8 @@ Rails.application.routes.draw do
   root "top#index"
   devise_for :users, controllers: {
     registrations: "users/registrations",
-    confirmations: "users/confirmations"
+    confirmations: "users/confirmations",
+    omniauth_callbacks: 'users/omniauth_callbacks'
   }
 
   get "confirmation_sent", to: "static_pages#confirmation_sent", as: "confirmation_sent"

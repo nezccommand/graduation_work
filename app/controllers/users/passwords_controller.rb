@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Users::PasswordsController < Devise::PasswordsController
   def create
     email = params[resource_name][:email].downcase
@@ -11,6 +9,6 @@ class Users::PasswordsController < Devise::PasswordsController
       self.resource = resource_class.new
     end
 
-    respond_with({}, location: after_sending_reset_password_instructions_path_for(resource_name))
+    respond_with({}, location: password_sent_path)
   end
 end

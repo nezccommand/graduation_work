@@ -4,4 +4,10 @@ class StaticPagesController < ApplicationController
 
   def password_sent
   end
+
+  def terms
+  end
+
+  def privacy_policy
+  end
 end

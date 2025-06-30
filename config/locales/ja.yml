@@ -16,8 +16,8 @@ ja:
         subject: "【フィッシング詐欺学習室】ユーザー登録時のメール認証"
     confirmations:
       new:
-        title: "ユーザー認証メール"
-        submit: "認証メールを送る"
+        title: "ユーザー認証メールの再送信"
+        submit: "認証メールを送信する"
         instructions: "メールアドレスを入力してください。認証メールを送ります。"
     registrations:
       signed_up: "ユーザー登録が完了しました"

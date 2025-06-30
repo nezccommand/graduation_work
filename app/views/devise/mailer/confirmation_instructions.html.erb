@@ -6,8 +6,11 @@
 <p>現在、仮登録の状態です。</p>
 <p>以下のリンクをクリックしてメールアドレスの認証を完了してください。</p>
 
-<p>
-  <%= link_to confirmation_url(@resource, confirmation_token: @token), confirmation_url(@resource, confirmation_token: @token) %>
+<p class="text-center">
+  <a href="<%= confirmation_url(@resource, confirmation_token: @token) %>"
+     style="display: inline-block; padding: 12px 24px; background-color: #16a34a; color: white; text-decoration: none; border-radius: 6px; font-weight: bold;">
+    メールアドレスを認証する
+  </a>
 </p>
 
 <hr class="my-4">

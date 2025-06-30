@@ -3,10 +3,12 @@ Rails.application.routes.draw do
   devise_for :users, controllers: {
     registrations: "users/registrations",
     confirmations: "users/confirmations",
+    passwords: "users/passwords",
     omniauth_callbacks: "users/omniauth_callbacks"
   }
 
   get "confirmation_sent", to: "static_pages#confirmation_sent", as: "confirmation_sent"
+  get "password_sent", to: "static_pages#password_sent", as: "password_sent"
   resources :quizzes, only: %i[ show ] do
     post :answer, on: :member
     collection do

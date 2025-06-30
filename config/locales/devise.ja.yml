@@ -81,7 +81,12 @@ ja:
         change_your_password: パスワードを変更
         confirm_new_password: 確認用新しいパスワード
         new_password: 新しいパスワード
+        title: "パスワードの再設定"
+        submit: "パスワードを変更する"
       new:
+        title: "パスワードの再設定"
+        submit: "再設定メールを送信する"
+      title: 
         forgot_your_password: パスワードを忘れましたか？
         send_me_reset_password_instructions: パスワードの再設定方法を送信する
       no_token: このページにはアクセスできません。パスワード再設定メールのリンクからアクセスされた場合には、URL をご確認ください。
@@ -120,7 +125,8 @@ ja:
         back: 戻る
         didn_t_receive_confirmation_instructions: アカウント確認のメールを受け取っていませんか？
         didn_t_receive_unlock_instructions: アカウントのロック解除方法のメールを受け取っていませんか？
-        forgot_your_password: パスワードを忘れましたか？
+        forgot_your_password: パスワードをお忘れですか？
+        resend_confirmation: "確認メールを再送する"
         sign_in: ログイン
         sign_in_with_provider: "%{provider}でログイン"
         sign_up: アカウント登録
@@ -133,6 +139,7 @@ ja:
       unlocked: アカウントをロック解除しました。
   errors:
     messages:
+      confirmation: "と一致しません"
       already_confirmed: は既に登録済みです。ログインしてください。
       confirmation_period_expired: の期限が切れました。%{period} までに確認する必要があります。 新しくリクエストしてください。
       expired: の有効期限が切れました。新しくリクエストしてください。

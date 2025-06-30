@@ -9,8 +9,8 @@ Rails.application.routes.draw do
 
   get "confirmation_sent", to: "static_pages#confirmation_sent", as: "confirmation_sent"
   get "password_sent", to: "static_pages#password_sent", as: "password_sent"
-  get 'terms', to: 'static_pages#terms'
-  get 'privacy_policy', to: 'static_pages#privacy_policy'
+  get "terms", to: "static_pages#terms"
+  get "privacy_policy", to: "static_pages#privacy_policy"
   resources :quizzes, only: %i[ show ] do
     post :answer, on: :member
     collection do

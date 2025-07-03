@@ -57,7 +57,9 @@
 
 <% tweet_text = "フィッシング詐欺クイズで#{@total_count}問中#{@correct_count}問正解しました！" %>
 
+
 <div class="max-w-[14rem] mx-auto space-y-4">
+<!--
   <div class="flex justify-center">
     <%= link_to "https://twitter.com/intent/tweet?" +
                 "url=#{ERB::Util.url_encode(root_url)}" +
@@ -80,6 +82,9 @@
       <span>結果をシェアする</span>
     <% end %>
   </div>
+</div>
+-->
+
 
   <div class="text-center">
     <%= link_to "トップに戻る", root_path, class: "bg-green-700 text-white px-6 py-3 rounded-lg shadow hover:bg-green-600 transition font-semibold w-full inline-block text-center" %>

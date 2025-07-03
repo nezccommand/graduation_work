@@ -1,0 +1,14 @@
+<div class="mb-8 p-4 border rounded bg-green-50 text-green-900">
+  <h2 class="text-xl font-bold mb-4 text-green-900">各問題の正誤一覧</h2>
+  <ul class="flex flex-wrap gap-3 text-lg font-bold">
+    <% result.each_with_index do |res, i| %>
+      <% is_correct = res[:selected] == res[:correct] %>
+      <% mark = is_correct ? "◯" : "×" %>
+      <% color = is_correct ? "text-green-600" : "text-red-600" %>
+
+      <li class="<%= color %>">
+        第<%= i + 1 %>問 <%= mark %>
+      </li>
+    <% end %>
+  </ul>
+</div>

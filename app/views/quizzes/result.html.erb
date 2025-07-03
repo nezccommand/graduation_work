@@ -1,6 +1,6 @@
 <div class="max-w-7xl mx-auto px-4">
   <h2 class="text-2xl sm:text-4xl text-green-900 font-bold mb-6 text-center border-b border-green-300 pb-4">結果発表</h2>
-
+  
   <%= render partial: "result_summary", locals: {
         total_count: @total_count,
         correct_count: @correct_count,
@@ -8,6 +8,32 @@
         weakest_genre: @weakest_genre
       } %>
 
+<div class="my-6 text-center">
+  <button
+    type="button"
+    class="w-full text-left font-semibold mt-1 mb-1 focus:outline-none flex items-center space-x-2"
+    onclick="toggleAnswerAndExplanation(this)"
+    aria-expanded="false"
+    aria-controls="answer-section"
+    data-show-label="解答・解説を表示"
+    data-hide-label="解答・解説を非表示"
+  >
+    <svg
+      class="w-5 h-5 text-blue-600 transition-transform duration-200 transform"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+    >
+      <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path>
+    </svg>
+    <span>解答・解説を表示</span>
+  </button>
+</div>
+
+<div id="answer-section" class="overflow-hidden max-h-0 transition-all duration-200">
   <% @result.each_with_index do |res, i| %>
     <% is_correct_answer = (res[:selected] == res[:correct]) %>
 
@@ -24,12 +50,11 @@
       <p class="mt-6 mb-4 text-xl font-bold"><%= res[:question] %></p>
 
       <%= render partial: "choice_list", locals: { choices: res[:choices], selected: res[:selected], correct: res[:correct] } %>
-
       <%= render partial: "toggle_explanation", locals: { explanation: res[:explanation], index: i } %>
     </div>
   <% end %>
+</div>
 
   <div class="mt-10 text-center">
     <%= link_to "トップに戻る", root_path, class: "bg-green-700 text-white px-6 py-3 rounded-lg shadow hover:bg-green-600 transition font-semibold" %>
   </div>
-</div>

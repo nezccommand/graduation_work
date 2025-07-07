@@ -17,9 +17,13 @@
                   d="M21 21l-4.35-4.35M17 11a6 6 0 11-12 0 6 6 0 0112 0z" />
               </svg>
             </div>
-            <%= f.search_field :title_or_sample_text_cont,
-              placeholder: "例： 「口座」 「ポイント」など",
-              class: "pl-10 pr-4 py-2 w-full border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 transition duration-150 ease-in-out" %>
+            <div data-controller="autocomplete" data-autocomplete-url-value="<%= search_suggestions_path %>" class="relative">
+              <%= f.search_field :title_or_sample_text_cont,
+                placeholder: "例： 「口座」 「ポイント」など",
+                data: { action: "input->autocomplete#search" },
+                class: "pl-10 pr-4 py-2 w-full border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 transition duration-150 ease-in-out" %>
+              <ul data-autocomplete-target="results" class="autocomplete-results bg-white border-gray-300 rounded mt-1 absolute z-10 w-full shadow"></ul>
+            </div>
           </div>
         </div>
 

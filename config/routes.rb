@@ -17,6 +17,7 @@ Rails.application.routes.draw do
       get :result
     end
   end
+  get "search/suggestions", to: "search#suggestions", as: :search_suggestions
 
   resources :samples, only: %i[ index show ]
   resource :mypage, only: %i[ show ]

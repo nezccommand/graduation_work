@@ -9,29 +9,29 @@
         <div class="space-y-8">
           <div>
             <p class="text-lg font-semibold mb-3">ジャンル</p>
-            <div class="flex gap-6">
-              <label class="inline-flex items-center bg-white border border-green-300 rounded-lg px-4 py-2 shadow-sm cursor-pointer hover:bg-green-100">
-                <%= radio_button_tag :genre, "基本知識", true, class: "mr-2" %>
-                基本知識
-              </label>
-              <label class="inline-flex items-center bg-white border border-green-300 rounded-lg px-4 py-2 shadow-sm cursor-pointer hover:bg-green-100">
-                <%= radio_button_tag :genre, "対応方法", false, class: "mr-2" %>
-                対応方法
-              </label>
+            <div class="flex flex-wrap gap-4">
+              <% [["基本知識", true], ["対応方法", false]].each_with_index do |(label, checked), i| %>
+                <label class="block relative cursor-pointer">
+                  <%= radio_button_tag :genre, label, checked, id: "genre_#{i}", class: "peer hidden" %>
+                  <div class="bg-white border border-green-300 rounded-lg shadow-sm px-6 py-3 peer-checked:bg-green-100 transition text-green-900 font-semibold">
+                    <%= label %>
+                  </div>
+                </label>
+              <% end %>
             </div>
           </div>
 
           <div>
             <p class="text-lg font-semibold mb-3">難易度</p>
-            <div class="flex gap-6">
-              <label class="inline-flex items-center bg-white border border-green-300 rounded-lg px-4 py-2 shadow-sm cursor-pointer hover:bg-green-100">
-                <%= radio_button_tag :difficulty, "easy", true, class: "mr-2" %>
-                易しめ
-              </label>
-              <label class="inline-flex items-center bg-white border border-green-300 rounded-lg px-4 py-2 shadow-sm cursor-pointer hover:bg-green-100">
-                <%= radio_button_tag :difficulty, "hard", false, class: "mr-2" %>
-                難しめ
-              </label>
+            <div class="flex flex-wrap gap-4">
+              <% [["易しめ", "easy", true], ["難しめ", "hard", false]].each_with_index do |(label, value, checked), i| %>
+                <label class="block relative cursor-pointer">
+                  <%= radio_button_tag :difficulty, value, checked, id: "difficulty_#{i}", class: "peer hidden" %>
+                  <div class="bg-white border border-green-300 rounded-lg shadow-sm px-6 py-3 peer-checked:bg-green-100 transition text-green-900 font-semibold">
+                    <%= label %>
+                  </div>
+                </label>
+              <% end %>
             </div>
           </div>
         </div>
@@ -42,6 +42,7 @@
           <%= submit_tag "クイズスタート", class: "active:scale-95 bg-green-700 text-white px-8 py-4 rounded-lg shadow hover:bg-green-600 transition text-lg font-semibold w-full max-w-xs text-center" %>
         </div>
       <% end %>
+
     </div>
   </section>
 </div>

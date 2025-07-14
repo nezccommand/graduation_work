@@ -1,0 +1,29 @@
+<div id="loader" class="fixed inset-0 bg-white/40 backdrop-blur-sm z-50 flex flex-col items-center justify-center gap-6">
+  <div class="relative w-24 h-20">
+    <div class="absolute w-full h-full bg-green-200 border border-green-400 rounded-md origin-left animate-flip1"></div>
+    <div class="absolute w-full h-full bg-green-300 border border-green-400 rounded-md origin-left animate-flip2"></div>
+    <div class="absolute w-full h-full bg-green-400 border border-green-500 rounded-md origin-left animate-flip3"></div>
+  </div>
+  <p class="text-green-900 font-semibold text-lg">読み込み中…</p>
+</div>
+
+
+<style>
+@keyframes flipPage {
+  0% { transform: rotateY(0deg); opacity: 1; }
+  50% { transform: rotateY(-180deg); opacity: 0.4; }
+  100% { transform: rotateY(-360deg); opacity: 1; }
+}
+.animate-flip1 {
+  animation: flipPage 1.5s infinite;
+  animation-delay: 0s;
+}
+.animate-flip2 {
+  animation: flipPage 1.5s infinite;
+  animation-delay: 0.5s;
+}
+.animate-flip3 {
+  animation: flipPage 1.5s infinite;
+  animation-delay: 1s;
+}
+</style>

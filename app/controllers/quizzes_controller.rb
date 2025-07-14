@@ -3,15 +3,22 @@ class QuizzesController < ApplicationController
     if params[:quiz_start].present?
       session[:quiz_ids] = nil
       session[:answers] = []
+      session[:selected_genre] = params[:genre]
+      session[:selected_difficulty] = params[:difficulty]
 
       redirect_to quiz_path(id: params[:id]) and return
     end
 
-    if session[:quiz_ids].blank?
-      genre1_ids = Quiz.where(genre: "基本知識").order("RANDOM()").limit(5).pluck(:id)
-      genre2_ids = Quiz.where(genre: "対応方法").order("RANDOM()").limit(5).pluck(:id)
-      session[:quiz_ids] = genre1_ids + genre2_ids
-    end
+  if session[:quiz_ids].blank?
+    genre = session[:selected_genre]
+    difficulty = session[:selected_difficulty]
+
+    session[:quiz_ids] = Quiz
+      .where(genre: genre, difficulty: difficulty)
+      .order("RANDOM()")
+      .limit(10)
+      .pluck(:id)
+  end
 
     @index = params[:id].to_i
 

@@ -36,5 +36,4 @@ def self.calculate_results(quiz_ids, answer_ids)
     difficulty: difficulty
   }
 end
-
 end

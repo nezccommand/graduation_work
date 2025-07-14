@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   resources :quizzes, only: %i[ show ] do
     post :answer, on: :member
     collection do
+      get :select
       get :result
     end
   end

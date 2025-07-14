@@ -69,3 +69,8 @@ ja:
       previous: '前へ'
       next: '次へ'
       truncate: '...'
+  enums:
+    quiz:
+      difficulty:
+        easy: "易しめ"
+        hard: "難しめ"

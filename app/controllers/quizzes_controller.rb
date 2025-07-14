@@ -3,15 +3,22 @@ class QuizzesController < ApplicationController
     if params[:quiz_start].present?
       session[:quiz_ids] = nil
       session[:answers] = []
+      session[:selected_genre] = params[:genre]
+      session[:selected_difficulty] = params[:difficulty]
 
       redirect_to quiz_path(id: params[:id]) and return
     end
 
-    if session[:quiz_ids].blank?
-      genre1_ids = Quiz.where(genre: "基本知識").order("RANDOM()").limit(5).pluck(:id)
-      genre2_ids = Quiz.where(genre: "対応方法").order("RANDOM()").limit(5).pluck(:id)
-      session[:quiz_ids] = genre1_ids + genre2_ids
-    end
+  if session[:quiz_ids].blank?
+    genre = session[:selected_genre]
+    difficulty = session[:selected_difficulty]
+
+    session[:quiz_ids] = Quiz
+      .where(genre: genre, difficulty: difficulty)
+      .order("RANDOM()")
+      .limit(10)
+      .pluck(:id)
+  end
 
     @index = params[:id].to_i
 
@@ -35,17 +42,18 @@ class QuizzesController < ApplicationController
     @result = data[:result]
     @correct_count = data[:correct_count]
     @total_count = data[:total_count]
-    @genre_accuracies = data[:genre_accuracies]
-    @weakest_genre = data[:weakest_genre]
+    @difficulty = data[:difficulty]
+    @genre = Quiz.find(session[:quiz_ids].first)&.genre
 
     if current_user
       current_user.quiz_histories.create!(
         correct_count: @correct_count,
-        total_count: @total_count
-        )
+        total_count: @total_count,
+        difficulty: @difficulty,
+        genre: @genre
+      )
 
-      excess_histories = current_user.quiz_histories.order(created_at: :desc).offset(10)
-      excess_histories.destroy_all if excess_histories.exists?
+      current_user.quiz_histories.order(created_at: :desc).offset(10).destroy_all
     end
   end
 end

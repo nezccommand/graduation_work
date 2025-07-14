@@ -2,6 +2,8 @@ class Quiz < ApplicationRecord
   has_many :choices, dependent: :destroy
   accepts_nested_attributes_for :choices, allow_destroy: true
 
+  enum difficulty: { easy: "easy", hard: "hard" }
+
   def self.calculate_results(quiz_ids, answer_ids)
     quizzes = find(quiz_ids)
 

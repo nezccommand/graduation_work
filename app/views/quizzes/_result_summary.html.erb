@@ -5,22 +5,3 @@
 </div>
 
 <%= render partial: "result_true_or_false", locals: { result: @result } %>
-
-<div class="mb-8 p-4 border rounded bg-green-50 text-green-900">
-  <h3 class="text-xl font-bold mb-2">ジャンル別正答率</h3>
-
-  <ul class="space-y-2">
-    <% genre_accuracies.each do |genre, accuracy| %>
-      <li>
-        <span class="font-semibold"><%= genre %>：</span>
-        <span><%= accuracy %>％</span>
-      </li>
-    <% end %>
-  </ul>
-
-  <% if weakest_genre.present? && correct_count != 10 %>
-    <p class="mt-4 text-red-700 font-semibold">
-      あなたは<strong><%= weakest_genre %></strong>の問題が比較的苦手なようです。
-    </p>
-  <% end %>
-</div>

@@ -42,17 +42,18 @@ class QuizzesController < ApplicationController
     @result = data[:result]
     @correct_count = data[:correct_count]
     @total_count = data[:total_count]
-    @genre_accuracies = data[:genre_accuracies]
-    @weakest_genre = data[:weakest_genre]
+    @difficulty = data[:difficulty]
+    @genre = Quiz.find(session[:quiz_ids].first)&.genre
 
     if current_user
       current_user.quiz_histories.create!(
         correct_count: @correct_count,
-        total_count: @total_count
-        )
+        total_count: @total_count,
+        difficulty: @difficulty,
+        genre: @genre
+      )
 
-      excess_histories = current_user.quiz_histories.order(created_at: :desc).offset(10)
-      excess_histories.destroy_all if excess_histories.exists?
+      current_user.quiz_histories.order(created_at: :desc).offset(10).destroy_all
     end
   end
 end

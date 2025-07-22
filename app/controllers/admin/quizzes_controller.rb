@@ -44,7 +44,7 @@ class Admin::QuizzesController < Admin::BaseController
 
   def quiz_params
     params.require(:quiz).permit(
-      :question, :explanation, :genre,
+      :question, :explanation, :genre, :difficulty,
       choices_attributes: [ :id, :content, :is_correct, :_destroy ]
     )
   end

@@ -10,9 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_07_14_063546) do
+ActiveRecord::Schema[7.2].define(version: 2025_07_24_105057) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "badges", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "difficulty", null: false
+    t.string "genre", null: false
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["difficulty", "genre"], name: "index_badges_on_difficulty_and_genre", unique: true
+  end
 
   create_table "choices", force: :cascade do |t|
     t.bigint "quiz_id", null: false
@@ -75,6 +85,17 @@ ActiveRecord::Schema[7.2].define(version: 2025_07_14_063546) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "user_badges", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "badge_id", null: false
+    t.string "rank", default: "bronze"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["badge_id"], name: "index_user_badges_on_badge_id"
+    t.index ["user_id", "badge_id"], name: "index_user_badges_on_user_id_and_badge_id", unique: true
+    t.index ["user_id"], name: "index_user_badges_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "name", default: "", null: false
     t.string "email", default: "", null: false
@@ -101,4 +122,6 @@ ActiveRecord::Schema[7.2].define(version: 2025_07_14_063546) do
   add_foreign_key "quiz_histories", "users"
   add_foreign_key "sample_tags", "samples"
   add_foreign_key "sample_tags", "tags"
+  add_foreign_key "user_badges", "badges"
+  add_foreign_key "user_badges", "users"
 end

@@ -1,0 +1,44 @@
+<div x-data="{ open: false, desc: '' }">
+  <% Badge.all.each do |badge| %>
+    <% user_badge = current_user.user_badges.find { |ub| ub.badge_id == badge.id } %>
+    <% rank = user_badge&.rank || "none" %>
+    <% color_class = case rank
+      when "gold" then "fill-yellow-400"
+      when "silver" then "fill-gray-400"
+      when "bronze" then "fill-amber-700"
+      else "fill-gray-300"
+    end %>
+
+    <div class="badge-item inline-flex flex-col items-center m-4 cursor-pointer"
+        @click="open = true; desc = '<%= j badge.description %>'">
+      <div class="<%= 'badge-glow' if rank == 'gold' %>">
+        <% if badge.genre == "基本知識" %>
+          <svg class="w-16 h-16 <%= color_class %>" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M6 4a2 2 0 0 0-2 2v14a1 1 0 0 0 1.447.894L8.5 19.118l3.053 1.776A1 1 0 0 0 13 20V6a2 2 0 0 0-2-2H6zM14 4v16a1 1 0 0 0 1.447.894L19.5 19.118l3.053 1.776A1 1 0 0 0 24 20V6a2 2 0 0 0-2-2h-8z"/>
+          </svg>
+        <% else %>
+          <svg class="w-16 h-16 <%= color_class %>" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M12 2L3 5v6c0 5.25 3.52 10.74 8.4 12.54a1 1 0 0 0 .8 0C17.48 21.74 21 16.25 21 11V5l-9-3z"/>
+          </svg>
+        <% end %>
+      </div>
+      <p class="mt-2 text-sm text-center <%= 'text-gray-400' if rank == 'none' %>">
+        <%= badge.name %>
+      </p>
+    </div>
+  <% end %>
+
+  <div x-show="open"
+      x-transition
+      class="fixed inset-0 flex items-center justify-center bg-black/30 backdrop-blur-m z-50">
+    <div class="bg-white rounded-lg shadow-lg p-6 max-w-sm w-full relative
+                flex flex-col items-center space-y-6">
+      <h2 class="text-lg font-bold">バッジの説明</h2>
+      <p class="text-center text-gray-700" x-text="desc"></p>
+      <button @click="open = false"
+              class="px-6 py-2 bg-gray-500 hover:bg-gray-600 text-white rounded">
+        閉じる
+      </button>
+    </div>
+  </div>
+</div>

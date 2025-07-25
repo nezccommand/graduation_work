@@ -1,9 +1,19 @@
-# This file should ensure the existence of records required to run the application in every environment (production,
-# development, test). The code here should be idempotent so that it can be executed at any point in every environment.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Example:
-#
-#   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
-#     MovieGenre.find_or_create_by!(name: genre_name)
-#   end
+Badge.find_or_create_by!(difficulty: "easy", genre: "基本知識") do |badge|
+  badge.name = "簡単 × 基本知識 全問正解"
+  badge.description = "簡単モードで基本知識ジャンルを全問正解した証"
+end
+
+Badge.find_or_create_by!(difficulty: "easy", genre: "対応方法") do |badge|
+  badge.name = "簡単 × 対応方法 全問正解"
+  badge.description = "簡単モードで対応方法ジャンルを全問正解した証"
+end
+
+Badge.find_or_create_by!(difficulty: "hard", genre: "基本知識") do |badge|
+  badge.name = "難しい × 基本知識 全問正解"
+  badge.description = "難しいモードで基本知識ジャンルを全問正解した証"
+end
+
+Badge.find_or_create_by!(difficulty: "hard", genre: "対応方法") do |badge|
+  badge.name = "難しい × 対応方法 全問正解"
+  badge.description = "難しいモードで対応方法ジャンルを全問正解した証"
+end

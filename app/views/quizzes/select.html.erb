@@ -24,7 +24,7 @@
           <div>
             <p class="text-lg font-semibold mb-3">難易度</p>
             <div class="flex flex-wrap gap-4">
-              <% [["易しめ", "easy", true], ["難しめ", "hard", false]].each_with_index do |(label, value, checked), i| %>
+              <% [["Easy", "easy", true], ["Hard", "hard", false]].each_with_index do |(label, value, checked), i| %>
                 <label class="block relative cursor-pointer">
                   <%= radio_button_tag :difficulty, value, checked, id: "difficulty_#{i}", class: "peer hidden" %>
                   <div class="bg-white border border-green-300 rounded-lg shadow-sm px-6 py-3 peer-checked:bg-green-100 transition text-green-900 font-semibold">

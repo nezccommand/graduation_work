@@ -1,4 +1,4 @@
-<div x-data="{ open: false, desc: '' }">
+<div x-data="{ open: false, desc: '', badgeData: null }">
   <% Badge.all.each do |badge| %>
     <% user_badge = current_user.user_badges.find { |ub| ub.badge_id == badge.id } %>
     <% rank = user_badge&.rank || "none" %>
@@ -8,13 +8,23 @@
       when "bronze" then "fill-amber-700"
       else "fill-gray-300"
     end %>
+    <% shape_class =
+        if badge.difficulty == "easy"
+          rank == "none" ? "rounded-full bg-green-50 p-4" : "rounded-full bg-green-100 p-4"
+        else
+          rank == "none" ? "rounded-lg bg-red-50 p-4" : "rounded-lg bg-red-100 p-4"
+        end %>
 
     <div class="badge-item inline-flex flex-col items-center m-4 cursor-pointer"
-        @click="open = true; desc = '<%= j badge.description %>'">
-      <div class="<%= 'badge-glow' if rank == 'gold' %>">
+         @click="open = true;
+                 desc = '<%= j badge.description %>';
+                 badgeData = { genre: '<%= badge.genre %>', difficulty: '<%= badge.difficulty %>', colorClass: '<%= color_class %>', rank: '<%= rank %>' }">
+      <div class="<%= shape_class %> <%= 'badge-glow' if rank == 'gold' %>">
         <% if badge.genre == "基本知識" %>
           <svg class="w-16 h-16 <%= color_class %>" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-            <path d="M6 4a2 2 0 0 0-2 2v14a1 1 0 0 0 1.447.894L8.5 19.118l3.053 1.776A1 1 0 0 0 13 20V6a2 2 0 0 0-2-2H6zM14 4v16a1 1 0 0 0 1.447.894L19.5 19.118l3.053 1.776A1 1 0 0 0 24 20V6a2 2 0 0 0-2-2h-8z"/>
+            <g transform="translate(-2,0)">
+              <path d="M6 4a2 2 0 0 0-2 2v14a1 1 0 0 0 1.447.894L8.5 19.118l3.053 1.776A1 1 0 0 0 13 20V6a2 2 0 0 0-2-2H6zM14 4v16a1 1 0 0 0 1.447.894L19.5 19.118l3.053 1.776A1 1 0 0 0 24 20V6a2 2 0 0 0-2-2h-8z"/>
+            </g>
           </svg>
         <% else %>
           <svg class="w-16 h-16 <%= color_class %>" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -29,10 +39,31 @@
   <% end %>
 
   <div x-show="open"
-      x-transition
-      class="fixed inset-0 flex items-center justify-center bg-black/30 backdrop-blur-m z-50">
+       x-transition
+       class="fixed inset-0 flex items-center justify-center bg-black/30 backdrop-blur-m z-50"
+       @click.self="open = false">
     <div class="bg-white rounded-lg shadow-lg p-6 max-w-sm w-full relative
                 flex flex-col items-center space-y-6">
+      <template x-if="badgeData">
+        <div :class="(badgeData.difficulty === 'easy'
+                      ? (badgeData.rank === 'none' ? 'rounded-full bg-green-50 p-4' : 'rounded-full bg-green-100 p-4')
+                      : (badgeData.rank === 'none' ? 'rounded-lg bg-red-50 p-4' : 'rounded-lg bg-red-100 p-4')) 
+                      + ' ' + (badgeData.rank === 'gold' ? 'badge-glow' : '')">
+          <template x-if="badgeData.genre === '基本知識'">
+            <svg :class="'w-16 h-16 ' + badgeData.colorClass" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <g transform="translate(-2,0)">
+                <path d="M6 4a2 2 0 0 0-2 2v14a1 1 0 0 0 1.447.894L8.5 19.118l3.053 1.776A1 1 0 0 0 13 20V6a2 2 0 0 0-2-2H6zM14 4v16a1 1 0 0 0 1.447.894L19.5 19.118l3.053 1.776A1 1 0 0 0 24 20V6a2 2 0 0 0-2-2h-8z"/>
+              </g>
+            </svg>
+          </template>
+          <template x-if="badgeData.genre !== '基本知識'">
+            <svg :class="'w-16 h-16 ' + badgeData.colorClass" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path d="M12 2L3 5v6c0 5.25 3.52 10.74 8.4 12.54a1 1 0 0 0 .8 0C17.48 21.74 21 16.25 21 11V5l-9-3z"/>
+            </svg>
+          </template>
+        </div>
+      </template>
+
       <h2 class="text-lg font-bold">バッジの説明</h2>
       <p class="text-center text-gray-700" x-text="desc"></p>
       <button @click="open = false"

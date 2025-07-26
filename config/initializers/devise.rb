@@ -280,7 +280,7 @@ Devise.setup do |config|
                       scope: "userinfo.email, userinfo.profile",
                       prompt: "select_account",
                       access_type: "offline",
-                      provider_ignores_state: false}
+                      provider_ignores_state: false }
   end
 
   # ==> Warden configuration

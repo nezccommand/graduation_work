@@ -45,6 +45,16 @@ class QuizzesController < ApplicationController
     @difficulty = data[:difficulty]
     @genre = Quiz.find(session[:quiz_ids].first)&.genre
 
+    badge = Badge.find_by(difficulty: @difficulty, genre: @genre)
+    if badge && @correct_count == @total_count
+      user_badge = UserBadge.find_or_initialize_by(user: current_user, badge: badge)
+
+      unless user_badge.rank == "gold"
+        user_badge.rank = "gold"
+        user_badge.save!
+      end
+    end
+
     if current_user
       current_user.quiz_histories.create!(
         correct_count: @correct_count,

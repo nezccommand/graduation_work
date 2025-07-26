@@ -1,6 +1,8 @@
 class User < ApplicationRecord
   has_many :quiz_histories, dependent: :destroy
   has_many :email_logs, dependent: :destroy
+  has_many :user_badges, dependent: :destroy
+  has_many :badges, through: :user_badges
 
   def oauth_user?
     provider.present? && uid.present?

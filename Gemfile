@@ -66,3 +66,12 @@ gem "ransack"
 gem "omniauth"
 gem "omniauth-rails_csrf_protection"
 gem "omniauth-google-oauth2"
+
+group :development, :test do
+  gem 'rspec-rails'
+end
+
+group :test do
+  gem 'shoulda-matchers'
+  gem 'factory_bot_rails'
+end

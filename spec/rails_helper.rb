@@ -1,5 +1,8 @@
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 require 'spec_helper'
+require 'capybara/rspec'
+
+Capybara.javascript_driver = :selenium_chrome
 ENV['RAILS_ENV'] ||= 'test'
 require_relative '../config/environment'
 # Prevent database truncation if the environment is production
@@ -9,6 +12,8 @@ abort("The Rails environment is running in production mode!") if Rails.env.produ
 # return unless Rails.env.test?
 require 'rspec/rails'
 require 'shoulda/matchers'
+Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
+
 
 Shoulda::Matchers.configure do |config|
   config.integrate do |with|
@@ -78,5 +83,11 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
+  config.include Devise::Test::IntegrationHelpers, type: :system
+  config.include Rails.application.routes.url_helpers
   config.include FactoryBot::Syntax::Methods
+  config.include Warden::Test::Helpers
+  Warden.test_mode!
+  config.after(:each) { Warden.test_reset! }
+  config.include OmniauthMacros
 end

@@ -24,7 +24,7 @@
   <% end %>
 
   <% if devise_mapping.omniauthable? %>
-    <%= form_with url: omniauth_authorize_path(:user, :google_oauth2), method: :post, local: true, data: { turbo: false } do %>
+    <%= form_with url: user_google_oauth2_omniauth_authorize_path, method: :post, local: true, data: { turbo: false } do %>
       <button type="submit" class="gsi-material-button">
         <div class="gsi-material-button-state"></div>
         <div class="gsi-material-button-content-wrapper">

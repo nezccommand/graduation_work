@@ -10,6 +10,7 @@ ja:
       too_short: "は%{count}文字以上で入力してください"
       invalid: "は正しい形式で入力してください"
       taken: "はすでに使用されています"
+      record_invalid: "バリデーションに失敗しました: %{errors}"
   devise:
     mailer:
       confirmation_instructions:

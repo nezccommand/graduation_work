@@ -47,7 +47,9 @@
     <%= render 'shared/header' %>
 
     <main class="mt-6 pt-24 px-4">
-      <%= render 'shared/flash_message' %>
+      <% unless controller_path.start_with?('devise') %>
+        <%= render 'shared/flash_message' %>
+      <% end %>
       <%= render "shared/loader" %>
       <%= yield %>
     </main>

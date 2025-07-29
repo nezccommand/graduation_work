@@ -1,6 +1,4 @@
-# spec/system/simulation_email_spec.rb
 require 'rails_helper'
-
 
 RSpec.describe "模擬メール送信機能", type: :system do
 
@@ -19,16 +17,15 @@ RSpec.describe "模擬メール送信機能", type: :system do
   end
 
   it "ログイン時にアクセスできる" do
-    sign_in user
-
-    visit "/simulation_email/new"
+    login_as(user, scope: :user)
+    visit new_simulation_email_path
 
     expect(current_path).to eq("/simulation_email/new")
     expect(page).to have_content("以下のメールアドレスに模擬フィッシングメールを送信します")
   end
 
   it "模擬メールが送信される" do
-    sign_in user
+    login_as(user, scope: :user)
     visit new_simulation_email_path
 
     click_button "模擬メールを送信する"
@@ -40,8 +37,8 @@ RSpec.describe "模擬メール送信機能", type: :system do
     expect(mail.body.encoded).to include("模擬フィッシング訓練")
   end
 
-  it "メール送信時に EmailLog が作成される" do
-    sign_in user
+  it "メール送信時にEmailLogが作成される" do
+    login_as(user, scope: :user)
     visit new_simulation_email_path
 
     expect {
@@ -51,5 +48,23 @@ RSpec.describe "模擬メール送信機能", type: :system do
     email_log = EmailLog.last
     expect(email_log.user).to eq user
     expect(email_log.sent_at.to_date).to eq Time.zone.today
+  end
+
+  it "5回メール送信後、送信ボタンが押せなくなる" do
+    login_as(user, scope: :user)
+
+    5.times do |i|
+      visit new_simulation_email_path
+
+      expect(page).to have_button("模擬メールを送信する")
+
+      click_button "模擬メールを送信する"
+      click_link "もう一度メールを送る"
+    end
+
+    visit new_simulation_email_path
+
+    expect(page).not_to have_button("模擬メールを送信する")
+    expect(page).to have_content("本日の送信上限に達しました")
   end
 end

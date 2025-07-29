@@ -1,11 +1,11 @@
 require "rails_helper"
 
 RSpec.describe "トップページのリンク表示", type: :system do
+  let(:user) { create(:user) }
+  
   before do
     driven_by(:rack_test)
   end
-
-  let(:user) { create(:user) }
 
   context "未ログイン時" do
     it "クイズやサンプル、ログイン・新規登録ボタンが表示される" do

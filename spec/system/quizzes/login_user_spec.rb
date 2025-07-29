@@ -129,6 +129,18 @@ RSpec.describe "基本的なクイズ機能", type: :system do
       expect(user_badge.rank).to eq "gold"
     end
 
+    it "全問正解後にマイページでバッジがgoldランクとして表示される" do
+      10.times do |i|
+        choices = page.all("input[name='selected_choice']", visible: false)
+        choices.last.choose
+        click_button(i == 9 ? "結果を確認する" : "回答して次へ")
+      end
+
+      visit mypage_path
+
+      expect(page).to have_css(".badge-item svg.fill-yellow-400")
+    end
+
     it "全問正解しなかった場合はバッジが付与されない" do
       10.times do |i|
         expect(page).to have_content("第 #{i + 1} 問")

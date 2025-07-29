@@ -10,6 +10,8 @@ class SimulationEmailsController < ApplicationController
       return
     end
 
+    delete_old_email_logs(current_user)
+
     PhishingMailer.send_random_email(current_user).deliver_now
 
     EmailLog.create!(user: current_user, sent_at: Time.zone.now)
@@ -23,5 +25,9 @@ class SimulationEmailsController < ApplicationController
 
   def over_daily_limit?(user)
     EmailLog.where(user: user).today.count >= 5
+  end
+
+  def delete_old_email_logs(user)
+    user.email_logs.where.not(id: user.email_logs.today.select(:id)).delete_all
   end
 end

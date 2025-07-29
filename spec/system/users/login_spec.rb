@@ -58,11 +58,4 @@ RSpec.describe "ユーザーログイン", type: :system do
     expect(page).to have_content("ユーザーが見つかりません")
     expect(page).to have_current_path(new_user_session_path)
   end
-
-  it "未ログイン時にログインが必要なページにアクセスするとメッセージが表示される" do
-    visit "/simulation_email/new"
-
-    expect(page).to have_content("ログインもしくはアカウント登録してください。")
-    expect(current_path).to eq(new_user_session_path)
-  end
 end

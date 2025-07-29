@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe "模擬メール送信機能", type: :system do
-
   let(:user) { create(:user) }
 
   before do

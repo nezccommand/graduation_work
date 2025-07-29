@@ -2,7 +2,7 @@ require "rails_helper"
 
 RSpec.describe "トップページのリンク表示", type: :system do
   let(:user) { create(:user) }
-  
+
   before do
     driven_by(:rack_test)
   end

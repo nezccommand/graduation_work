@@ -19,7 +19,7 @@ RSpec.describe "ユーザーログイン", type: :system do
     click_button "ログイン"
 
     expect(page).to have_content("ログインしました")
-    expect(page).to have_current_path(root_path) 
+    expect(page).to have_current_path(root_path)
     expect(page).to have_content(user.name)
   end
 

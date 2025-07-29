@@ -2,7 +2,7 @@ FactoryBot.define do
   factory :badge do
     sequence(:name) { |n| "バッジ#{n}" }
     difficulty { "easy" }
-    genre { "基本知識" } 
+    genre { "基本知識" }
     description { "簡単バッジ" }
   end
 

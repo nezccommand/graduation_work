@@ -74,6 +74,6 @@ end
 group :test do
   gem "shoulda-matchers"
   gem "factory_bot_rails"
-  gem 'launchy'
-  gem 'database_cleaner-active_record'
+  gem "launchy"
+  gem "database_cleaner-active_record"
 end

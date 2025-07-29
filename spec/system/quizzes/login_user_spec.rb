@@ -68,7 +68,7 @@ RSpec.describe "基本的なクイズ機能", type: :system do
         first("input[name='selected_choice']", visible: false).choose
         click_button(i == 9 ? "結果を確認する" : "回答して次へ")
       end
-      
+
       expect(page).to have_content("10問中 0問 正解しました！")
     end
 
@@ -123,7 +123,7 @@ RSpec.describe "基本的なクイズ機能", type: :system do
         choices.last.choose
         click_button(i == 9 ? "結果を確認する" : "回答して次へ")
       end
-      
+
       user_badge = UserBadge.find_by(user: @user, badge: badge)
       expect(user_badge).not_to be_nil
       expect(user_badge.rank).to eq "gold"

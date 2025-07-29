@@ -55,7 +55,7 @@ RSpec.describe "ユーザー新規登録", type: :system do
     fill_in "メールアドレス", with: "test@example.com"
     fill_in "パスワード(6文字以上)", with: "password"
     fill_in "パスワード(確認用)", with: ""
-    
+
     click_button "ユーザー登録"
 
     expect(page).to have_content("パスワード（確認用）と一致しません")

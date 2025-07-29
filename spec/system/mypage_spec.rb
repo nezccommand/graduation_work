@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe "マイページ表示", type: :system do
-
   let(:user) { create(:user) }
   let!(:quiz_history) { create(:quiz_history, user: user, correct_count: 8, total_count: 10, difficulty: "easy", genre: "基本知識") }
 

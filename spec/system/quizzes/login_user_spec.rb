@@ -54,12 +54,7 @@ RSpec.describe "基本的なクイズ機能", type: :system do
         expect(page).to have_content("第 #{i + 1} 問")
 
         first("input[name='selected_choice']", visible: false).choose
-
-        if i == 9
-          click_button "結果を確認する"
-        else
-          click_button "回答して次へ"
-        end
+        click_button(i == 9 ? "結果を確認する" : "回答して次へ")
       end
 
       expect(page).to have_current_path("/quizzes/result")
@@ -71,12 +66,7 @@ RSpec.describe "基本的なクイズ機能", type: :system do
         expect(page).to have_content("第 #{i + 1} 問")
 
         first("input[name='selected_choice']", visible: false).choose
-
-        if i == 9
-          click_button "結果を確認する"
-        else
-          click_button "回答して次へ"
-        end
+        click_button(i == 9 ? "結果を確認する" : "回答して次へ")
       end
       
       expect(page).to have_content("10問中 0問 正解しました！")
@@ -91,12 +81,7 @@ RSpec.describe "基本的なクイズ機能", type: :system do
         else
           all("input[name='selected_choice']", visible: false).last.choose
         end
-
-        if i == 9
-          click_button "結果を確認する"
-        else
-          click_button "回答して次へ"
-        end
+        click_button(i == 9 ? "結果を確認する" : "回答して次へ")
       end
 
       expect(page).to have_current_path("/quizzes/result")
@@ -104,36 +89,25 @@ RSpec.describe "基本的なクイズ機能", type: :system do
       expect(page).to have_content("10問中 5問 正解しました！")
     end
 
-    it "一部正解・一部不正解の場合に正答数が正しく表示される" do
+    it "結果画面で『トップに戻る』ボタンを押すとトップページに遷移する" do
       10.times do |i|
-        expect(page).to have_content("第 #{i + 1} 問")
-
-        if i < 5
-          first("input[name='selected_choice']", visible: false).choose
-        else
-          all("input[name='selected_choice']", visible: false).last.choose
-        end
-
-        if i == 9
-          click_button "結果を確認する"
-        else
-          click_button "回答して次へ"
-        end
+        first("input[name='selected_choice']", visible: false).choose
+        click_button(i == 9 ? "結果を確認する" : "回答して次へ")
       end
 
       expect(page).to have_current_path("/quizzes/result")
       expect(page).to have_content("結果発表")
-      expect(page).to have_content("10問中 5問 正解しました！")
+
+      click_link "トップに戻る"
+
+      expect(page).to have_current_path(root_path)
+      expect(page).to have_content("このサービスについて")
     end
 
     it "クイズ回答後にQuizHistoryが作成される" do
       10.times do |i|
         first("input[name='selected_choice']", visible: false).choose
-        if i == 9
-          click_button "結果を確認する"
-        else
-          click_button "回答して次へ"
-        end
+        click_button(i == 9 ? "結果を確認する" : "回答して次へ")
       end
 
       expect(@user.quiz_histories.count).to eq 1
@@ -147,11 +121,7 @@ RSpec.describe "基本的なクイズ機能", type: :system do
       10.times do |i|
         choices = page.all("input[name='selected_choice']", visible: false)
         choices.last.choose
-        if i == 9
-          click_button "結果を確認する"
-        else
-          click_button "回答して次へ"
-        end
+        click_button(i == 9 ? "結果を確認する" : "回答して次へ")
       end
       
       user_badge = UserBadge.find_by(user: @user, badge: badge)
@@ -168,12 +138,7 @@ RSpec.describe "基本的なクイズ機能", type: :system do
         else
           all("input[name='selected_choice']", visible: false).last.choose
         end
-
-        if i == 9
-          click_button "結果を確認する"
-        else
-          click_button "回答して次へ"
-        end
+        click_button(i == 9 ? "結果を確認する" : "回答して次へ")
       end
 
       expect(UserBadge.find_by(user: @user)).to be_nil

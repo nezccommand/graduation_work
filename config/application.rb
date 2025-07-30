@@ -33,5 +33,5 @@ module Myapp
 
     config.i18n.load_path = Dir[Rails.root.join("config", "locales", "**", "*.{rb,yml}")]
       .reject { |path| path.include?("devise.ja.yml") }
-      end
+  end
 end

@@ -60,4 +60,30 @@ RSpec.describe "ユーザー新規登録", type: :system do
 
     expect(page).to have_content("パスワード（確認用）と一致しません")
   end
+
+  it "確認メール再送信リンクから再送信ができること" do
+    user = User.create!(
+      name: "未確認ユーザー",
+      email: "unconfirmed@example.com",
+      password: "password",
+      password_confirmation: "password",
+      confirmed_at: nil
+    )
+
+    ActionMailer::Base.deliveries.clear
+
+    visit new_user_session_path
+    click_link "認証メールが届いていない方はこちら"
+
+    expect(page).to have_current_path(new_user_confirmation_path)
+
+    fill_in "メールアドレス", with: user.email
+    click_button "認証メールを送信する"
+
+    expect(page).to have_content("認証メールを送信しました")
+
+    expect(ActionMailer::Base.deliveries.count).to eq(1)
+    mail = ActionMailer::Base.deliveries.last
+    expect(mail.to).to include(user.email)
+  end
 end

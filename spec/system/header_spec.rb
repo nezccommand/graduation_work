@@ -8,12 +8,54 @@ RSpec.describe "ヘッダー", type: :system do
   end
 
   context "ログイン前" do
-    it "ホームへのリンクが存在する" do
-      visit root_path
+    before { visit root_path }
 
-      within("header") do
-        expect(page).to have_link("フィッシング詐欺学習室", href: root_path)
-        expect(page).to have_link("ログイン", href: new_user_session_path)
+    describe "ヘッダーのリンク" do
+      it "ホームへのリンクが存在する" do
+        within("header") do
+          expect(page).to have_link("フィッシング詐欺学習室", href: root_path)
+        end
+      end
+
+      it "ログインページへのリンクが存在する" do
+        within("header") do
+          expect(page).to have_link("ログイン", href: new_user_session_path)
+        end
+      end
+
+      it "クイズページへのリンクが存在する" do
+        within("header") do
+          expect(page).to have_link("クイズ", href: select_quizzes_path)
+        end
+      end
+
+      it "実例一覧ページへのリンクが存在する" do
+        within("header") do
+          expect(page).to have_link("実例一覧", href: samples_path)
+        end
+      end
+    end
+
+    describe "各リンクから遷移できるか" do
+      it "クイズページに遷移できる" do
+        click_link "クイズ"
+        expect(page).to have_current_path(select_quizzes_path)
+      end
+
+      it "実例一覧ページに遷移できる" do
+        click_link "実例一覧"
+        expect(page).to have_current_path(samples_path)
+      end
+
+      it "ログインページに遷移できる" do
+        click_link "ログイン", match: :first
+        expect(page).to have_current_path(new_user_session_path)
+      end
+
+      it "ホームリンクでトップに戻れる" do
+        visit samples_path
+        click_link "フィッシング詐欺学習室", match: :first
+        expect(page).to have_current_path(root_path)
       end
     end
   end
@@ -40,6 +82,15 @@ RSpec.describe "ヘッダー", type: :system do
         expect(page).to have_selector("#menu-button")
         find("#menu-button").click
         expect(page).to have_content("ログアウト")
+      end
+    end
+
+    it "クイズと実例一覧に遷移できる" do
+      visit root_path
+
+      within("header") do
+        expect(page).to have_link("クイズ", href: select_quizzes_path)
+        expect(page).to have_link("実例一覧", href: samples_path)
       end
     end
 

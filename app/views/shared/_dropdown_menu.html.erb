@@ -1,11 +1,7 @@
 <div id="dropdown-menu"
     class="font-comic opacity-0 scale-95 pointer-events-none absolute top-full right-0 mt-2 w-48 bg-white border border-green-200 rounded-lg shadow-lg z-50 transform transition-all duration-200">
   <ul class="py-2">
-    <li>
-      <%= link_to "クイズ", "javascript:;", 
-          class: "block px-4 py-2 text-green-800 hover:bg-green-100", 
-          onclick: "if (confirm('クイズを始めてもよろしいですか？')) { window.location.href='#{select_quizzes_path}'; }" %>
-    </li>
+    <li><%= link_to "クイズ", select_quizzes_path, class: "block px-4 py-2 text-green-800 hover:bg-green-100" %></li>
     <li><%= link_to "実例一覧", samples_path, class: "block px-4 py-2 text-green-800 hover:bg-green-100" %></li>
 
     <% if user_signed_in? %>

@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     confirmations: "users/confirmations",
     passwords: "users/passwords",
     omniauth_callbacks: "users/omniauth_callbacks"
-  }
+  }, helpers: true
 
   get "confirmation_sent", to: "static_pages#confirmation_sent", as: "confirmation_sent"
   get "password_sent", to: "static_pages#password_sent", as: "password_sent"

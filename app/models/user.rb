@@ -13,7 +13,8 @@ class User < ApplicationRecord
           :recoverable, :rememberable, :confirmable,
           :omniauthable, omniauth_providers: %i[google_oauth2]
 
-  validates :uid, uniqueness: { scope: :provider }
+  validates :password, presence: true, unless: :oauth_user?
+  validates :uid, uniqueness: { scope: :provider }, allow_nil: true
   validates :password, length: { minimum: 6 }, if: -> { !oauth_user? && (new_record? || changes[:encrypted_password]) }
   validates :password, confirmation: true, if: -> { !oauth_user? && (new_record? || changes[:encrypted_password]) }
   validates :password_confirmation, presence: true, if: -> { !oauth_user? && (new_record? || changes[:encrypted_password]) }

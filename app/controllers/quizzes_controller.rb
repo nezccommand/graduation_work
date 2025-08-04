@@ -52,6 +52,7 @@ class QuizzesController < ApplicationController
       unless user_badge.rank == "gold"
         user_badge.rank = "gold"
         user_badge.save!
+        @newly_awarded_badge = badge
       end
     end
 

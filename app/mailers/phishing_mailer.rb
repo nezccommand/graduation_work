@@ -1,5 +1,5 @@
 class PhishingMailer < ApplicationMailer
-  default from: "training@example.com"
+  default from: "フィッシング学習室 <info@phish-learning.com>"
 
   def send_random_email(user)
     @user = user

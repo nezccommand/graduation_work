@@ -1,1 +1,0 @@
-Rake::Task["assets:precompile"].prerequisites.delete("css:install")

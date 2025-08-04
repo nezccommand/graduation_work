@@ -8,13 +8,10 @@
   <% end %>
 </div>
 
-<% if current_user && total_count == correct_count && @difficulty.present? && @genre.present? %>
-  <% badge = Badge.find_by(difficulty: @difficulty, genre: @genre) %>
-  <% if badge && current_user.user_badges.exists?(badge: badge, rank: 'gold') %>
-    <div class="text-center text-green-800 font-semibold mb-6">
-      🎉 バッジ「<%= badge.name %>」が付与されました！
-    </div>
-  <% end %>
+<% if @newly_awarded_badge %>
+  <div class="text-center text-green-800 font-semibold mb-6">
+    🎉 バッジ「<%= @newly_awarded_badge.name %>」が付与されました！
+  </div>
 <% end %>
 
 <%= render partial: "result_true_or_false", locals: { result: @result } %>

@@ -23,8 +23,8 @@
       <div class="bg-white border border-green-200 rounded-lg shadow-sm p-6 mb-10 max-w-full">
         <h3 class="text-xl font-semibold mb-3 text-green-800">クイズの履歴</h3>
         <div class="overflow-x-auto">
-          <div class="flex space-x-4 min-w-max">
-            <%= render partial: 'quiz_history_chart', locals: { chartWidthClass: 'w-[280px] sm:w-[400px]', chartHeightClass: 'h-[180px] sm:h-[250px]' } %>
+          <div class="flex space-x-4 w-full">
+            <%= render partial: 'quiz_history_chart' %>
           </div>
         </div>
       </div>

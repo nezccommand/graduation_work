@@ -3,7 +3,7 @@ class PhishingMailer < ApplicationMailer
 
   def send_random_email(user)
     @user = user
-    template = ["template_one", "template_two", "template_three", "template_four"].sample
+    template = [ "template_one", "template_two", "template_three", "template_four" ].sample
 
     subject =
       case template

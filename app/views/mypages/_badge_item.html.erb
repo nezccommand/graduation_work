@@ -1,3 +1,16 @@
+<style>
+  /* スマホ幅の時にバッジSVGとテキストサイズを70%に縮小 */
+  @media (max-width: 640px) {
+    .badge-item svg {
+      width: 3rem;
+      height: 3rem;
+    }
+    .badge-item p {
+      font-size: 0.7rem;
+    }
+  }
+</style>
+
 <div x-data="{ open: false, desc: '', badgeData: null }">
   <% Badge.all.each do |badge| %>
     <% user_badge = current_user.user_badges.find { |ub| ub.badge_id == badge.id } %>

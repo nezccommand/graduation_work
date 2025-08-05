@@ -1,0 +1,109 @@
+<% if @quiz_histories.any? %>
+  <canvas id="quizHistoryBarChart"></canvas>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
+
+  <script>
+    const quizHistories = <%= raw(
+      @quiz_histories.map do |h|
+        {
+          date: h.created_at.strftime("%Y-%m-%d"),
+          correct: h.correct_count,
+          difficulty: h.difficulty || "unknown",
+          genre: h.genre || "不明"
+        }
+      end.to_json
+    ) %>;
+
+    document.addEventListener("turbo:load", function () {
+      const ctx = document.getElementById("quizHistoryBarChart");
+      if (!ctx || !quizHistories.length) return;
+
+      const labels = quizHistories.map(h => h.date);
+      const data = quizHistories.map(h => h.correct);
+      const tooltips = quizHistories.map(h => `ジャンル: ${h.genre}\n難易度: ${h.difficulty}`);
+      const backgroundColors = quizHistories.map(h => {
+        switch (h.difficulty) {
+          case 'easy':
+            return 'rgba(69, 228, 122, 0.6)';
+          case 'hard':
+            return 'rgba(249, 50, 50, 0.6)';
+          default:
+            return 'rgba(150, 150, 150, 0.6)';
+        }
+      });
+      new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: labels,
+          datasets: [
+            {
+              label: 'トータル問題数',
+              data: new Array(labels.length).fill(10),
+              backgroundColor: 'rgba(200, 200, 200, 0.3)',
+              borderWidth: 0,
+              categoryPercentage: 0.6,
+              barPercentage: 1.0,
+              order: 1
+            },
+            {
+              label: '正答数',
+              data: data,
+              backgroundColor: backgroundColors,
+              borderColor: backgroundColors,
+              borderWidth: 1,
+              categoryPercentage: 0.6,
+              barPercentage: 1.0,
+              order: 2
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          scales: {
+            x: {
+              stacked: true
+            },
+            y: {
+              beginAtZero: true,
+              max: 10,
+              stepSize: 1,
+              title: {
+                display: true,
+                text: '正答数'
+              }
+            }
+          },
+          plugins: {
+            tooltip: {
+              callbacks: {
+                label: function(context) {
+                  const index = context.dataIndex;
+
+                  if (context.dataset.label === 'トータル問題数' && data[index] === 10) {
+                    return null;
+                  }
+
+                  return [
+                    `正答数: ${data[index]}`,
+                    tooltips[index]
+                  ];
+                }
+              }
+            },
+            title: {
+              display: true,
+              text: '回答履歴（新しい順）',
+              align: 'start'
+            },
+            legend: {
+              display: false
+            }
+          }
+        }
+      });
+    });
+  </script>
+<% else %>
+  <p>まだクイズの履歴がありません。</p>
+<% end %>
+</div>

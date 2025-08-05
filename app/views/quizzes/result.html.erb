@@ -89,3 +89,9 @@
     <%= link_to "トップに戻る", root_path, class: "bg-green-700 text-white px-6 py-3 rounded-lg shadow hover:bg-green-600 transition font-semibold w-full inline-block text-center" %>
   </div>
 </div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    sessionStorage.removeItem("quizProgress");
+  });
+</script>

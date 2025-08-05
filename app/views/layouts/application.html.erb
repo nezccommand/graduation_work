@@ -2,6 +2,8 @@
 <html>
   <head>
     <title><%= content_for(:title) || "フィッシング詐欺学習室" %></title>
+    <meta name="theme-color" content="#ffffff">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="twitter:card" content="summary" />
@@ -20,7 +22,7 @@
 
     <link rel="manifest" href="/manifest.json">
     <%= favicon_link_tag('favicon.ico') %>
-    <link rel="apple-touch-icon" href="<%= asset_path 'ロゴ.png' %>">
+    <link rel="apple-touch-icon" href="<%= asset_path 'logo.png' %>">
     <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>

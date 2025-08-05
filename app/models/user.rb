@@ -37,11 +37,13 @@ class User < ApplicationRecord
     user = User.find_by(email: auth.info.email)
 
     if user
-      user.update(
-        provider: auth.provider,
-        uid: auth.uid,
-        name: auth.info.name.presence || auth.info.email.split("@").first
-      )
+      if user.provider.blank? && user.uid.blank?
+        user.update(
+          provider: auth.provider,
+          uid: auth.uid,
+          name: auth.info.name.presence || auth.info.email.split("@").first
+        )
+      end
       user
     else
       User.where(provider: auth.provider, uid: auth.uid).first_or_create do |user|

@@ -19,6 +19,10 @@ RSpec.describe "基本的なクイズ機能", type: :system do
       expect(page).to have_selector("form[action='#{answer_quiz_path(id: 1)}']")
     end
 
+    it "ナビゲーションバーが表示されている" do
+      expect(page).to have_selector("#progress-bar")
+    end
+
     it "1問に答えて次の問題へ進める" do
       first("input[name='selected_choice']", visible: false).choose
       click_button "回答して次へ"

@@ -32,7 +32,8 @@ RSpec.describe "模擬メール送信機能", type: :system do
 
     mail = ActionMailer::Base.deliveries.last
     expect(mail.to).to include("test@example.com")
-    expect(mail.subject).to include("模擬フィッシングメール")
+    expect(mail.subject).to include("【訓練】")
+    expect(mail.subject).to include("【フィッシング詐欺学習室】")
     expect(mail.body.encoded).to include("模擬フィッシング訓練")
   end
 

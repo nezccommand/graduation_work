@@ -2,9 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "マイページ表示", type: :system do
   let(:user) { create(:user) }
-  let!(:quiz_history) { create(:quiz_history, user: user, correct_count: 8, total_count: 10, difficulty: "easy", genre: "基本知識") }
-
-
+  let!(:quiz_history) { create(:quiz_history, user: user, correct_count: 5, total_count: 10, difficulty: "easy", genre: "基本知識") }
 
   before do
     driven_by(:rack_test)
@@ -30,7 +28,8 @@ RSpec.describe "マイページ表示", type: :system do
     login_as(user, scope: :user)
     visit mypage_path
 
-    expect(page).to have_content("10問中8問正解")
-    expect(page).to have_content("Easy ・基本知識")
+    expect(page).to have_selector("canvas#quizHistoryBarChart")
+    canvas = find("canvas#quizHistoryBarChart", visible: true)
+    expect(canvas).to be_visible
   end
 end

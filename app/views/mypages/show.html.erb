@@ -7,40 +7,26 @@
 
       <div class="bg-white border border-green-200 rounded-lg shadow-sm p-6 mb-10">
         <h3 class="text-xl font-semibold mb-3 text-green-800">ユーザー情報</h3>
-        <p><strong>ユーザー名：</strong><%= current_user.name || "未設定" %></p>
+        <p><strong>ユーザー名：</strong><%= current_user.name %></p>
         <p><strong>メールアドレス：</strong><%= current_user.email %></p>
       </div>
 
-      <div class="bg-white border border-green-200 rounded-lg shadow-sm p-6 mb-10">
+      <div class="bg-white border border-green-200 rounded-lg shadow-sm p-6 mb-10 max-w-full">
         <h3 class="text-xl font-semibold mb-3 text-green-800">取得したバッジ</h3>
-        <%= render 'badge_item' %>
+        <div class="overflow-x-auto">
+          <div class="flex space-x-4 min-w-max">
+            <%= render partial: 'badge_item' %>
+          </div>
+        </div>
       </div>
 
-      <div class="bg-white border border-green-200 rounded-lg shadow-sm p-6 mb-10">
+      <div class="bg-white border border-green-200 rounded-lg shadow-sm p-6 mb-10 max-w-full">
         <h3 class="text-xl font-semibold mb-3 text-green-800">クイズの履歴</h3>
-
-<% if @quiz_histories.any? %>
-  <ul class="list-disc list-inside text-green-900 space-y-1">
-    <% @quiz_histories.each do |history| %>
-      <li>
-        <%= history.created_at.strftime("%Y年%-m月%-d日") %>：
-        <%= history.total_count %>問中<%= history.correct_count %>問正解
-        （
-        <%= case history.difficulty
-            when "easy" then "Easy"
-            when "hard" then "Hard"
-            else history.difficulty.presence || "不明"
-            end %>
-        <% unless history.genre.nil? %>
-        ・<%= history.genre %>
-        <% end %>
-        ）
-      </li>
-    <% end %>
-  </ul>
-<% else %>
-  <p>まだクイズの履歴がありません。</p>
-<% end %>
+        <div class="overflow-x-auto">
+          <div class="flex space-x-4 min-w-max">
+            <%= render partial: 'quiz_history_chart', locals: { chartWidthClass: 'w-[280px] sm:w-[400px]', chartHeightClass: 'h-[180px] sm:h-[250px]' } %>
+          </div>
+        </div>
       </div>
 
       <div class="mt-12 flex flex-col items-center gap-6 max-w-xs mx-auto">

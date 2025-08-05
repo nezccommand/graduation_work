@@ -1,4 +1,14 @@
 <div class="max-w-7xl mx-auto px-4">
+  <p class="text-sm text-green-800 font-semibold text-right mb-1">
+    <%= @index %> / 10 問
+  </p>
+  <div class="w-full bg-green-100 rounded-full h-4 mb-6 overflow-hidden">
+    <div
+      id="progress-bar"
+      class="bg-green-600 h-4 rounded-full transition-all duration-500"
+      data-current-progress="<%= @index * 10 %>">
+    </div>
+  </div>
   <h2 class="text-2xl sm:text-3xl text-green-900 font-bold mb-6 text-center border-b border-green-300 pb-4">
     第 <%= @index %> 問
   </h2>
@@ -17,6 +27,7 @@
             id="choice_<%= choice.id %>"
             value="<%= choice.id %>"
             class="peer hidden"
+            <%= "checked" if choice.id.to_s == @selected_choice_id.to_s %>
           />
 
           <label

@@ -91,7 +91,9 @@
 </div>
 
 <script>
-  document.addEventListener("DOMContentLoaded", function () {
-    sessionStorage.removeItem("quizProgress");
-  });
+document.addEventListener("turbo:load", () => {
+  if (window.location.pathname.includes("/quizzes/select")) {
+    sessionStorage.setItem("previousProgress", "0");
+  }
+});
 </script>

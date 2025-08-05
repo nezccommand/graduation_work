@@ -24,6 +24,7 @@ class QuizzesController < ApplicationController
 
     quiz_id = session[:quiz_ids][@index - 1]
     @quiz = Quiz.find(quiz_id)
+    @selected_choice_id = session[:answers][@index - 1]
   end
 
   def answer

@@ -49,6 +49,8 @@
 
 <script>
   document.addEventListener("turbo:load", () => {
-    sessionStorage.removeItem("quizProgress");
+    if (window.location.pathname.includes("/quizzes/select")) {
+      sessionStorage.setItem("previousProgress", "0");
+    }
   });
 </script>

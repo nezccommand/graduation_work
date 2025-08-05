@@ -3,11 +3,7 @@ document.addEventListener("turbo:load", () => {
   if (!bar) return;
 
   const currentProgress = parseInt(bar.dataset.currentProgress, 10);
-
   const previousProgress = parseInt(sessionStorage.getItem("previousProgress") || "0", 10);
-
-  console.log("current:", currentProgress);
-  console.log("previous:", previousProgress);
 
   bar.style.width = `${previousProgress}%`;
 

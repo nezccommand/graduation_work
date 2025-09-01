@@ -5,11 +5,7 @@
         マイページ
       </h2>
 
-      <div class="bg-white border border-green-200 rounded-lg shadow-sm p-6 mb-10">
-        <h3 class="text-xl font-semibold mb-3 text-green-800">ユーザー情報</h3>
-        <p><strong>ユーザー名：</strong><%= current_user.name %></p>
-        <p><strong>メールアドレス：</strong><%= current_user.email %></p>
-      </div>
+      <%= render "mypages/edit_name_modal" %>
 
       <div class="bg-white border border-green-200 rounded-lg shadow-sm p-6 mb-10 max-w-full">
         <h3 class="text-xl font-semibold mb-3 text-green-800">取得したバッジ</h3>

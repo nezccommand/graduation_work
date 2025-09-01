@@ -3,10 +3,15 @@ function toggleAnswerAndExplanation(button) {
   const content = document.getElementById(targetId);
   const arrow = button.querySelector("svg");
   const label = button.querySelector("span");
-  const isHidden = content.classList.contains("open");
+  const isOpen = content.classList.contains("open");
 
-  if (isHidden) {
-    content.style.maxHeight = null;
+  if (isOpen) {
+    content.style.maxHeight = content.scrollHeight + "px";
+
+    requestAnimationFrame(() => {
+      content.style.maxHeight = "0px";
+    });
+
     content.classList.remove("open");
     button.setAttribute("aria-expanded", "false");
     label.textContent = button.dataset.showLabel || "解答・解説を表示";
@@ -17,6 +22,13 @@ function toggleAnswerAndExplanation(button) {
     button.setAttribute("aria-expanded", "true");
     label.textContent = button.dataset.hideLabel || "解答・解説を非表示";
     arrow?.classList.add("rotate-90");
+
+    content.addEventListener("transitionend", function handler(e) {
+      if (e.propertyName === "max-height") {
+        content.style.maxHeight = "none";
+        content.removeEventListener("transitionend", handler);
+      }
+    });
   }
 }
 

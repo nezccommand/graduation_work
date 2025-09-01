@@ -4,7 +4,7 @@ class Users::ConfirmationsController < Devise::ConfirmationsController
     yield resource if block_given?
 
     if resource.errors.empty?
-      sign_in(resource) # ← ここでログイン
+      sign_in(resource)
       set_flash_message!(:notice, :confirmed)
       respond_with_navigational(resource) { redirect_to after_confirmation_path_for(resource_name, resource) }
     else
@@ -28,6 +28,6 @@ class Users::ConfirmationsController < Devise::ConfirmationsController
   protected
 
   def after_confirmation_path_for(resource_name, resource)
-    root_path # ← トップページに遷移
+    root_path
   end
 end

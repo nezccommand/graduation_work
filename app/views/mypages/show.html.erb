@@ -5,68 +5,7 @@
         マイページ
       </h2>
 
-      <div x-data="{ open: false }" class="bg-white border border-green-200 rounded-lg shadow-sm p-6 mb-10">
-        <h3 class="text-xl font-semibold mb-3 text-green-800">ユーザー情報</h3>
-
-        <p>
-          <strong>ユーザー名：</strong> <%= current_user.name %>
-          <button @click="open = true" class="ml-2 text-green-600 underline">編集</button>
-        </p>
-
-        <p><strong>メールアドレス：</strong> <%= current_user.email %></p>
-
-        <!-- モーダル -->
-        <div x-show="open"
-            x-transition
-            class="fixed inset-0 flex items-center justify-center bg-black/30 backdrop-blur-m z-50"
-            @click.self="open = false">
-
-          <div class="bg-white rounded-lg shadow-lg p-6 max-w-sm w-full relative
-                      flex flex-col items-center space-y-6">
-
-            <h2 class="text-lg font-semibold mb-2">ユーザー名を編集</h2>
-
-            <!-- エラー表示用 -->
-            <div id="form-errors" class="text-red-500 text-sm w-full"></div>
-
-            <%= form_with(model: current_user, url: registration_path(current_user), method: :put, local: false, id: "edit-name-form") do |f| %>
-              <div class="mb-4 w-full">
-                <%= f.label :name, "ユーザー名", class: "block text-sm font-medium text-gray-700" %>
-                <%= f.text_field :name, class: "mt-1 block w-full border-gray-300 rounded-md shadow-sm", value: current_user.name %>
-              </div>
-
-              <div class="flex justify-end w-full space-x-2">
-                <button type="button" @click="open = false" class="px-4 py-2 bg-gray-200 rounded-lg">キャンセル</button>
-                <%= f.submit "更新", class: "px-4 py-2 bg-green-600 text-white rounded-lg" %>
-              </div>
-            <% end %>
-          </div>
-        </div>
-      </div>
-
-      <script>
-        document.addEventListener('turbo:load', () => {
-          const form = document.getElementById('edit-name-form');
-          if (!form) return;
-
-          form.addEventListener('ajax:success', (event) => {
-            // 成功したらマイページへリダイレクト
-            window.location.href = "<%= mypage_path %>";
-          });
-
-          form.addEventListener('ajax:error', (event) => {
-            const [data, status, xhr] = event.detail;
-            const errorsDiv = document.getElementById('form-errors');
-
-            // JSONでエラーが返ってきた場合
-            if (data && data.errors) {
-              errorsDiv.textContent = data.errors.join(', ');
-            } else {
-              errorsDiv.textContent = "更新中にエラーが発生しました。";
-            }
-          });
-        });
-      </script>
+      <%= render "mypages/edit_name_modal" %>
 
       <div class="bg-white border border-green-200 rounded-lg shadow-sm p-6 mb-10 max-w-full">
         <h3 class="text-xl font-semibold mb-3 text-green-800">取得したバッジ</h3>

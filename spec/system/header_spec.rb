@@ -69,8 +69,9 @@ RSpec.describe "ヘッダー", type: :system do
       visit "/quizzes/select"
 
       within("header") do
-        find("a[aria-label='ホーム']").click
+        expect(page).to have_link("トップページ", href: root_path)
       end
+      click_link "トップページ"
 
       expect(current_path).to eq(root_path)
     end

@@ -21,10 +21,6 @@ class User < ApplicationRecord
   validates :email, presence: true, uniqueness: true,
             format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i }
 
-  def send_devise_notification(notification, *args)
-    devise_mailer.send(notification, self, *args).deliver_later
-  end
-
   def email_logs_sent_today_count
     email_logs.where(sent_at: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day).count
   end

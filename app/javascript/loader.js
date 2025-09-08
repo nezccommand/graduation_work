@@ -17,3 +17,19 @@ document.addEventListener("turbo:render", () => {
     loader.style.display = "none";
   }
 });
+
+document.addEventListener("turbo:submit-start", (event) => {
+  const form = event.target;
+  if (form.id === "password-form") {
+    const loader = document.getElementById("loader");
+    if (loader) loader.style.display = "block";
+  }
+});
+
+document.addEventListener("turbo:submit-end", (event) => {
+  const form = event.target;
+  if (form.id === "password-form") {
+    const loader = document.getElementById("loader");
+    if (loader) loader.style.display = "none";
+  }
+});

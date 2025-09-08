@@ -35,5 +35,6 @@ module Myapp
       .reject { |path| path.include?("devise.ja.yml") }
     
     config.active_job.queue_adapter = :sidekiq
+    config.active_support.to_time_preserves_timezone = :zone
   end
 end

@@ -77,3 +77,5 @@ group :test do
   gem "launchy"
   gem "database_cleaner-active_record"
 end
+
+gem 'sidekiq'

@@ -33,7 +33,7 @@ module Myapp
 
     config.i18n.load_path = Dir[Rails.root.join("config", "locales", "**", "*.{rb,yml}")]
       .reject { |path| path.include?("devise.ja.yml") }
-    
+
     config.active_support.to_time_preserves_timezone = :zone
   end
 end

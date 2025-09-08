@@ -5,7 +5,7 @@
         <%= t("devise.passwords.new.title") %>
       </h2>
 
-      <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+      <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post, id: "password-reset-form" }) do |f| %>
         <%= render "devise/shared/error_messages", resource: resource %>
 
         <%= f.email_field :email,

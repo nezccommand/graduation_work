@@ -12,7 +12,7 @@ class SimulationEmailsController < ApplicationController
 
     delete_old_email_logs(current_user)
 
-    PhishingMailer.send_random_email(current_user).deliver_later
+    PhishingMailer.send_random_email(current_user).deliver_now
 
     EmailLog.create!(user: current_user, sent_at: Time.zone.now)
     redirect_to complete_simulation_email_path

@@ -3,7 +3,7 @@ document.addEventListener("turbo:load", () => {
   if (!loader) return;
 
   window.addEventListener("load", () => {
-    loader.style.display = "flex";
+    loader.style.display = "none";
   });
 
   setTimeout(() => {

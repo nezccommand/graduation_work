@@ -23,12 +23,14 @@
       <%= form_with(model: current_user, url: registration_path(current_user), method: :put, local: false, id: "edit-name-form") do |f| %>
         <div class="mb-4 w-full">
           <%= f.label :name, "ユーザー名", class: "block text-sm font-medium text-gray-700" %>
-          <%= f.text_field :name, class: "mt-1 block w-full border-gray-300 rounded-md shadow-sm", value: current_user.name %>
+          <%= f.text_field :name, 
+                class: "outline-none px-1 py-1 mt-1 block w-full rounded-md border-2 border-green-200 focus:border-green-500 focus:ring focus:ring-green-200 focus:ring-opacity-50 shadow-sm transition-colors", 
+                value: current_user.name %>
         </div>
 
-        <div class="flex justify-end w-full space-x-2">
+        <div class="flex justify-center w-full space-x-2">
+          <%= f.submit "更新", class: "px-6 py-2 bg-green-600 text-white rounded-lg cursor-pointer" %>
           <button type="button" @click="open = false" class="px-4 py-2 bg-gray-200 rounded-lg cursor-pointer">キャンセル</button>
-          <%= f.submit "更新", class: "px-4 py-2 bg-green-600 text-white rounded-lg cursor-pointer" %>
         </div>
       <% end %>
     </div>

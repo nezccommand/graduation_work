@@ -46,7 +46,7 @@
           本日の残り送信可能回数: <%= current_user.remaining_email_sends %> 回
         </p>
         <p>
-          <%= link_to "マイページに戻る", mypage_path, class: "active:scale-95 bg-white border border-green-700 text-green-700 w-full px-15 py-2 rounded-lg shadow hover:bg-green-50 transition font-semibold w-full text-center" %>
+          <%= link_to "マイページに戻る", mypage_path, class: "active:scale-95 bg-white border border-green-700 text-green-700 w-full px-15 py-2 rounded-lg shadow hover:bg-green-50 transition font-semibold w-full text-center", data: { turbo: false } %>
         </p>
       </div>
     </div>

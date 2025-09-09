@@ -15,7 +15,7 @@
 
       <div class="mt-12 flex flex-col items-center gap-6 max-w-xs mx-auto">
         <%= link_to "もう一度メールを送る", new_simulation_email_path, class: "active:scale-95 bg-green-700 text-white px-8 py-4 rounded-lg shadow hover:bg-green-600 transition text-lg font-semibold w-full text-center" %>
-        <%= link_to "マイページに戻る", mypage_path, class: "active:scale-95 bg-white border border-green-700 text-green-700 px-8 py-4 rounded-lg shadow hover:bg-green-50 transition text-lg font-semibold w-full text-center" %>
+        <%= link_to "マイページに戻る", mypage_path, class: "active:scale-95 bg-white border border-green-700 text-green-700 px-8 py-4 rounded-lg shadow hover:bg-green-50 transition text-lg font-semibold w-full text-center", data: { turbo: false } %>
       </div>
     </div>
   </section>

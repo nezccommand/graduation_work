@@ -20,15 +20,23 @@ document.addEventListener("turbo:render", () => {
 
 document.addEventListener("turbo:submit-start", (event) => {
   const form = event.target;
-  if (form.id === "password-form") {
+  if (
+    form.id === "simulation-email-form" ||
+    form.id === "confirmation-form" ||
+    form.id === "password-reset-form"
+  ) {
     const loader = document.getElementById("loader");
-    if (loader) loader.style.display = "block";
+    if (loader) loader.style.display = "flex";
   }
 });
 
-document.addEventListener("turbo:submit-end", (event) => {
+document.addEventListener("turbo:load", (event) => {
   const form = event.target;
-  if (form.id === "password-form") {
+  if (
+    form.id === "simulation-email-form" ||
+    form.id === "confirmation-form" ||
+    form.id === "password-reset-form"
+  ) {
     const loader = document.getElementById("loader");
     if (loader) loader.style.display = "none";
   }
